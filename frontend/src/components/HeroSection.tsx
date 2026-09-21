@@ -1,8 +1,5 @@
 import { ArrowRight, CalendarClock, MapPin, ShieldCheck } from "lucide-react";
 
-const WHATSAPP_URL =
-  "https://wa.me/5521975623471?text=Ol%C3%A1!%20Vi%20a%20pr%C3%A9via%20do%20novo%20site%20da%20Barbearia%20do%20Detalhe%20e%20quero%20saber%20mais.";
-
 export function HeroSection() {
   return (
     <section className="hero" id="inicio">
@@ -17,25 +14,25 @@ export function HeroSection() {
         </h1>
         <p className="hero__lead">
           Uma nova experiência digital para aproximar a Barbearia do Detalhe dos clientes, apresentar
-          serviços com clareza e preparar o caminho para o agendamento online.
+          serviços com clareza e mostrar como será o agendamento online próprio.
         </p>
         <div className="hero__actions">
-          <a className="button button--primary" href="#servicos">
-            Conhecer serviços
+          <a className="button button--primary" href="#agendamento">
+            Agendar horário
             <ArrowRight aria-hidden="true" size={18} />
           </a>
-          <a className="button button--secondary" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-            Falar no WhatsApp
+          <a className="button button--secondary" href="#servicos">
+            Ver serviços e preços
           </a>
         </div>
         <div className="hero__highlights" aria-label="Diferenciais da proposta">
           <span>
             <CalendarClock aria-hidden="true" size={18} />
-            Agendamento online previsto
+            Agendamento online em demonstração
           </span>
           <span>
             <ShieldCheck aria-hidden="true" size={18} />
-            Sem coleta de dados nesta fase
+            Sem persistência nesta versão
           </span>
         </div>
       </div>
