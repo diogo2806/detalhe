@@ -1,4 +1,4 @@
-import { LandingPage } from "./components/LandingPage";
+import { LandingPage } from "./app/publico/landing/LandingPage";
 
 export default function App() {
   return <LandingPage />;
