@@ -36,7 +36,7 @@ export function ScreenManualDialog() {
         <div className="screen-manual__header">
           <div>
             <span className="eyebrow">Manual da Tela</span>
-            <h2 id="screen-manual-title">Prévia do site da Barbearia do Detalhe</h2>
+            <h2 id="screen-manual-title">Prévia do site e do agendamento</h2>
           </div>
           <button
             className="icon-button"
@@ -53,62 +53,99 @@ export function ScreenManualDialog() {
           <section>
             <h3>Finalidade</h3>
             <p>
-              Esta página apresenta a proposta visual e comercial do novo site para validação do cliente.
-              Nesta fase não existe backend, persistência nem agendamento real.
+              Esta página apresenta a proposta visual e comercial do site e permite demonstrar como
+              será o agendamento online. A demonstração funciona somente no navegador, sem backend,
+              banco de dados, reserva real, protocolo ou integração com n8n.
             </p>
           </section>
 
           <section>
-            <h3>Seções disponíveis</h3>
+            <h3>Agendamento</h3>
             <p>
-              A página apresenta proposta de valor, diferenciais, serviços e preços, plano mensal,
-              trabalhos, localização, horários, contato e dúvidas frequentes.
+              O fluxo possui quatro etapas: modalidade e serviço, data e horário, dados do cliente e
+              resumo. A modalidade pode ser cliente avulso, plano mensal ou grupo.
             </p>
           </section>
 
           <section>
-            <h3>Botões e ações</h3>
+            <h3>Modalidade e serviços</h3>
             <p>
-              Os botões de WhatsApp, Instagram e Google Maps abrem serviços externos. Os links internos
-              apenas navegam entre as seções da página. Nenhum botão cria ou confirma agendamento.
+              Cliente avulso e plano mensal escolhem um serviço. Em grupo, é possível adicionar dois
+              ou mais participantes, informar uma identificação para cada pessoa e selecionar
+              serviços diferentes. A demonstração não cria profissionais fictícios e não simula
+              disponibilidade individual da equipe.
             </p>
           </section>
 
           <section>
-            <h3>Campos e filtros</h3>
+            <h3>Data e horário</h3>
             <p>
-              Não há campos, filtros ou formulários nesta fase. Dados pessoais não são coletados pelo site.
+              A prévia mostra dias de atendimento de terça a sábado e horários de início em
+              intervalos de 15 minutos. O intervalo de 12:00 a 13:00 permanece bloqueado para almoço.
+              A duração do serviço é considerada para não oferecer um início que ultrapasse o almoço
+              ou o fechamento das 20:30.
             </p>
           </section>
 
           <section>
-            <h3>Regras de uso</h3>
+            <h3>Dados do cliente</h3>
             <p>
-              Serviços e valores são apenas informativos. Para confirmar disponibilidade, adesão ao plano
-              mensal ou atendimento, o visitante deve falar com a barbearia pelo WhatsApp.
+              A demonstração solicita nome e telefone/WhatsApp. Esses dados ficam apenas na memória
+              da página enquanto ela estiver aberta e não são enviados nem persistidos.
             </p>
           </section>
 
           <section>
-            <h3>Próximas fases</h3>
+            <h3>Resumo e confirmação</h3>
             <p>
-              Após aprovação, o projeto poderá receber agenda online, profissionais, grupos, serviços com
-              múltiplas janelas, plano mensal, Pix e automações n8n.
+              O resumo apresenta modalidade, serviço ou participantes, duração, data, horário,
+              cliente, telefone, profissional e valor de referência. O profissional aparece como
+              pendente de disponibilidade real. O botão de confirmação apenas mostra a aparência do
+              estado final e não cria agendamento.
+            </p>
+          </section>
+
+          <section>
+            <h3>Plano mensal</h3>
+            <p>
+              O fluxo pode ser visualizado, mas preço da mensalidade e cobertura definitiva de
+              serviços ainda não são inventados. Na versão final, o backend validará o plano ativo e
+              a cobertura antes de definir eventual cobrança.
+            </p>
+          </section>
+
+          <section>
+            <h3>Grupo</h3>
+            <p>
+              A prévia permite montar o grupo e escolher serviços diferentes. A versão definitiva só
+              oferecerá e confirmará horários quando houver profissionais elegíveis suficientes para
+              todos os participantes simultaneamente.
+            </p>
+          </section>
+
+          <section>
+            <h3>Outras seções e ações</h3>
+            <p>
+              Serviços, plano mensal, trabalhos, localização e FAQ continuam disponíveis. WhatsApp,
+              Instagram e Google Maps abrem serviços externos. Os links internos navegam pela própria
+              página.
             </p>
           </section>
 
           <section>
             <h3>Estados e mensagens</h3>
             <p>
-              A única mensagem de estado fixa é a identificação de que esta é uma prévia para aprovação e
-              que o agendamento online será ativado em uma fase posterior.
+              A interface identifica permanentemente o modo demonstração. Botões de continuação ficam
+              indisponíveis enquanto os dados mínimos da etapa não forem preenchidos. Ao finalizar, a
+              tela informa claramente que nenhuma reserva ou protocolo foi criado.
             </p>
           </section>
 
           <section>
             <h3>Permissões</h3>
             <p>
-              A página é pública e não possui autenticação, área administrativa ou controle de perfis.
+              A página é pública e não possui autenticação, área administrativa ou controle de perfis
+              nesta fase.
             </p>
           </section>
         </div>
