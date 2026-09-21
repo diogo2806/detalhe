@@ -1,4 +1,14 @@
-export type PaletteId = "original" | "graphite-copper" | "burgundy-cream" | "wood-beige";
+export type PaletteId =
+  | "original"
+  | "graphite-copper"
+  | "burgundy-cream"
+  | "wood-beige"
+  | "moss-brass"
+  | "indigo-silver"
+  | "violet-gold"
+  | "teal-sand"
+  | "burnt-orange-charcoal"
+  | "black-ivory";
 export type PalettePreference = PaletteId | "random";
 
 export const PALETTES: Array<{ id: PaletteId; name: string; description: string }> = [
@@ -21,6 +31,36 @@ export const PALETTES: Array<{ id: PaletteId; name: string; description: string 
     id: "wood-beige",
     name: "Madeira e bege",
     description: "Tradição e acolhimento: estabilidade, materiais naturais e proximidade visual.",
+  },
+  {
+    id: "moss-brass",
+    name: "Verde-musgo e latão",
+    description: "Equilíbrio e tradição: segurança, conforto e um acabamento clássico.",
+  },
+  {
+    id: "indigo-silver",
+    name: "Índigo e prata",
+    description: "Autoridade e precisão: estrutura, integridade e presença mais técnica.",
+  },
+  {
+    id: "violet-gold",
+    name: "Violeta e dourado",
+    description: "Luxo e autenticidade: personalidade marcante com percepção de qualidade.",
+  },
+  {
+    id: "teal-sand",
+    name: "Verde-petróleo e areia",
+    description: "Calma e equilíbrio: elegância discreta com um toque acolhedor.",
+  },
+  {
+    id: "burnt-orange-charcoal",
+    name: "Laranja queimado e carvão",
+    description: "Energia e proximidade: calor, sociabilidade e atitude sem excesso de brilho.",
+  },
+  {
+    id: "black-ivory",
+    name: "Preto e marfim",
+    description: "Clássico e direto: sofisticação, força, clareza e alto contraste.",
   },
 ];
 
