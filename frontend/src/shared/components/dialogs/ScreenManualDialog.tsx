@@ -36,7 +36,7 @@ export function ScreenManualDialog() {
         <div className="screen-manual__header">
           <div>
             <span className="eyebrow">Manual da Tela</span>
-            <h2 id="screen-manual-title">Prévia do site e do agendamento</h2>
+            <h2 id="screen-manual-title">Site e agendamento online</h2>
           </div>
           <button
             className="icon-button"
@@ -53,9 +53,9 @@ export function ScreenManualDialog() {
           <section>
             <h3>Finalidade</h3>
             <p>
-              Esta página apresenta a proposta visual e comercial do site e permite demonstrar como
-              será o agendamento online. A demonstração funciona somente no navegador, sem backend,
-              banco de dados, reserva real, protocolo ou integração com n8n.
+              Esta página apresenta os serviços, valores, plano mensal, trabalhos, localização e
+              canais de contato da Barbearia do Detalhe. Também permite escolher um atendimento e
+              realizar o agendamento online.
             </p>
           </section>
 
@@ -65,47 +65,39 @@ export function ScreenManualDialog() {
               O fluxo possui quatro etapas: modalidade e serviço, data e horário, dados do cliente e
               resumo. A modalidade pode ser cliente avulso, plano mensal ou grupo. Ao usar Voltar ou
               Continuar, a página retorna ao bloco de agendamento e leva o foco ao título da nova etapa,
-              mantendo o contexto visual e de navegação por teclado.
+              mantendo o contexto visual e a navegação por teclado.
             </p>
           </section>
 
           <section>
             <h3>Modalidade e serviços</h3>
             <p>
-              Cliente avulso e plano mensal escolhem um serviço. Em grupo, é possível adicionar dois
-              ou mais participantes, informar uma identificação para cada pessoa e selecionar
-              serviços diferentes. Como ainda não existe cadastro real da equipe, a demonstração usa
-              os identificadores Barbeiro A, Barbeiro B e Barbeiro C somente para mostrar como a
-              disponibilidade dos profissionais aparecerá na agenda.
+              Cliente avulso escolhe o serviço desejado. Cliente do plano mensal seleciona a modalidade
+              para que a cobertura do plano seja considerada antes da confirmação. No agendamento em
+              grupo, é possível adicionar participantes, identificar cada pessoa e escolher serviços
+              diferentes. A agenda considera os profissionais aptos e disponíveis para cada atendimento.
             </p>
           </section>
 
           <section>
             <h3>Data e horário</h3>
             <p>
-              A prévia mostra dias de atendimento de terça a sábado, horários divididos em janelas
-              de 15 minutos e serviços com duração sempre em múltiplos de 15 minutos. Cada cartão
-              mostra todos os barbeiros livres naquele bloco e, quando o serviço pode começar ali,
-              mostra separadamente quais profissionais permanecem livres durante toda a duração.
-              Ao escolher um horário, todas as janelas necessárias ficam marcadas; por exemplo,
-              45 minutos ocupam 3 janelas e o mesmo barbeiro precisa estar livre nas três. Uma janela
-              amarela pode ter barbeiros livres naquele bloco, mas nenhum deles consegue permanecer
-              livre até o fim do serviço. Uma janela vermelha significa que não existe barbeiro
-              disponível naquele bloco. As janelas selecionadas usam verde e nunca acumulam o estado
-              amarelo de indisponibilidade. Antes de marcar um atendimento, a demonstração também
-              confere novamente se o barbeiro atribuído está disponível em cada janela selecionada.
-              Enquanto não houver uma seleção válida, o botão Continuar permanece desabilitado.
-              O intervalo de 12:00 a 13:00 permanece bloqueado para almoço.
+              A agenda apresenta dias de atendimento de terça a sábado e horários divididos em janelas
+              de 15 minutos. A duração do serviço define quantas janelas serão ocupadas. Um atendimento
+              de 45 minutos, por exemplo, utiliza três janelas e exige que o mesmo profissional permaneça
+              disponível durante todo o período. Horários sem continuidade suficiente não podem ser
+              escolhidos como início. Horários ocupados ficam indisponíveis, e o intervalo de 12:00 a
+              13:00 permanece bloqueado para almoço. A disponibilidade é validada novamente antes da
+              confirmação.
             </p>
           </section>
 
           <section>
             <h3>Dados do cliente</h3>
             <p>
-              A demonstração solicita nome e WhatsApp. O número recebe máscara brasileira no formato
-              (DD) 9XXXX-XXXX e só permite continuar quando estiver com DDD válido e formato de celular.
-              Esses dados ficam apenas na memória da página enquanto ela estiver aberta e não são
-              enviados nem persistidos.
+              O agendamento solicita nome e WhatsApp. O número usa máscara brasileira no formato
+              (DD) 9XXXX-XXXX e só permite continuar quando houver DDD válido e formato de celular.
+              Esses dados identificam o agendamento e permitem o envio da confirmação do atendimento.
             </p>
           </section>
 
@@ -113,28 +105,29 @@ export function ScreenManualDialog() {
             <h3>Resumo e confirmação</h3>
             <p>
               O resumo apresenta modalidade, serviço ou participantes, duração, data, horário,
-              todos os blocos ocupados pelo atendimento, cliente, WhatsApp, profissional de
-              demonstração e valor de referência. Ao concluir a simulação, a tela mostra como será a
-              confirmação do horário e informa que nenhum agendamento de verdade foi feito nesta etapa
-              de apresentação.
+              todos os blocos ocupados, cliente, WhatsApp, profissional ou profissionais responsáveis
+              e valor do atendimento. Ao confirmar, o sistema verifica novamente a disponibilidade,
+              registra o horário e apresenta a confirmação. O WhatsApp informado também recebe os
+              dados do agendamento.
             </p>
           </section>
 
           <section>
             <h3>Plano mensal</h3>
             <p>
-              O fluxo pode ser visualizado, mas preço da mensalidade e cobertura definitiva de
-              serviços ainda não são inventados. Na versão final, o backend validará o plano ativo e
-              a cobertura antes de definir eventual cobrança.
+              Clientes com plano mensal podem usar a mesma agenda para marcar os serviços incluídos.
+              Antes de confirmar, o sistema verifica se o plano está ativo e se o serviço selecionado
+              possui cobertura. Quando houver valor adicional, ele é informado no resumo. O vencimento
+              do plano gera um lembrete pelo WhatsApp um dia antes, com opção de pagamento por Pix.
             </p>
           </section>
 
           <section>
             <h3>Grupo</h3>
             <p>
-              A prévia permite montar o grupo e escolher serviços diferentes. A versão definitiva só
-              oferecerá e confirmará horários quando houver profissionais elegíveis suficientes para
-              todos os participantes simultaneamente.
+              O agendamento em grupo permite escolher serviços diferentes para cada participante.
+              O horário só pode ser confirmado quando houver profissionais elegíveis e disponíveis
+              em quantidade suficiente para atender todos os participantes simultaneamente.
             </p>
           </section>
 
@@ -156,26 +149,27 @@ export function ScreenManualDialog() {
           <section>
             <h3>Outras seções e ações</h3>
             <p>
-              Serviços, plano mensal, trabalhos, localização e FAQ continuam disponíveis. WhatsApp,
-              Instagram e Google Maps abrem serviços externos. Os links internos navegam pela própria
-              página.
+              Serviços, plano mensal, trabalhos, localização e dúvidas frequentes ficam disponíveis
+              na mesma página. Os atalhos de WhatsApp, Instagram e rota abrem os respectivos serviços
+              externos. Os links do menu levam diretamente à seção escolhida.
             </p>
           </section>
 
           <section>
             <h3>Estados e mensagens</h3>
             <p>
-              A interface identifica permanentemente o modo demonstração. Botões de continuação ficam
-              indisponíveis enquanto os dados mínimos da etapa não forem preenchidos. Ao finalizar, a
-              tela informa claramente que nenhuma reserva ou protocolo foi criado.
+              Botões de continuação ficam indisponíveis enquanto os dados mínimos da etapa não forem
+              preenchidos. Horários sem disponibilidade não podem ser selecionados. Após confirmar,
+              a tela apresenta o resultado do agendamento e orienta o cliente caso seja necessário
+              escolher outro horário.
             </p>
           </section>
 
           <section>
             <h3>Permissões</h3>
             <p>
-              A página é pública e não possui autenticação, área administrativa ou controle de perfis
-              nesta fase.
+              A página é pública e o fluxo de agendamento é destinado aos clientes da barbearia.
+              As ações disponíveis são apresentadas de acordo com a etapa atual do atendimento.
             </p>
           </section>
         </div>

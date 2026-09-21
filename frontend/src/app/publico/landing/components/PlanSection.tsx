@@ -8,14 +8,14 @@ export function PlanSection() {
     <section className="section section--accent" id="plano" aria-labelledby="plano-title">
       <div className="plan-panel">
         <div className="plan-panel__content">
-          <span className="eyebrow">Relacionamento recorrente</span>
+          <span className="eyebrow">Plano mensal</span>
           <h2 id="plano-title">Plano mensal para quem gosta de manter o corte em dia</h2>
           <p>
-            A proposta do plano mensal é transformar visitas recorrentes em uma experiência mais previsível
-            para o cliente e para a barbearia. As condições finais serão confirmadas diretamente com a equipe.
+            O plano mensal facilita a rotina de clientes frequentes e organiza os atendimentos ao longo do
+            mês. Os serviços incluídos podem ser agendados diretamente pela agenda online.
           </p>
           <a className="button button--primary" href={WHATSAPP_PLAN_URL} target="_blank" rel="noreferrer">
-            Quero saber mais
+            Quero conhecer o plano
           </a>
         </div>
 
@@ -23,17 +23,17 @@ export function PlanSection() {
           <article>
             <Repeat2 aria-hidden="true" size={22} />
             <h3>Recorrência</h3>
-            <p>Uma proposta pensada para clientes frequentes.</p>
+            <p>Organize seus atendimentos ao longo do mês.</p>
           </article>
           <article>
             <CalendarCheck2 aria-hidden="true" size={22} />
-            <h3>Agenda futura</h3>
-            <p>Na próxima fase, o plano poderá se integrar ao agendamento online.</p>
+            <h3>Agenda online</h3>
+            <p>Agende os serviços do plano nos horários disponíveis.</p>
           </article>
           <article>
             <CircleDollarSign aria-hidden="true" size={22} />
             <h3>Pix e lembretes</h3>
-            <p>Pagamento e automações por n8n ficam reservados para a evolução do sistema.</p>
+            <p>Lembrete de vencimento pelo WhatsApp, com opção de pagamento por Pix.</p>
           </article>
         </div>
       </div>

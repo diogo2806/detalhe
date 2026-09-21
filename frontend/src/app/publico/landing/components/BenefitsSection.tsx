@@ -9,7 +9,7 @@ const benefits = [
   {
     icon: Clock3,
     title: "Tempo valorizado",
-    description: "A proposta futura de agenda reduz espera e organiza melhor a rotina da barbearia.",
+    description: "A agenda online reduz espera e organiza melhor os horários da barbearia.",
   },
   {
     icon: Smartphone,

@@ -11,8 +11,8 @@ export function ServicesSection() {
           <h2 id="servicos-title">Escolha o acabamento que combina com você</h2>
         </div>
         <p>
-          Nesta prévia os valores são informativos. A disponibilidade continua sendo confirmada diretamente
-          com a barbearia.
+          Confira os serviços, valores e duração de cada atendimento. Escolha o melhor horário
+          disponível na agenda.
         </p>
       </div>
 

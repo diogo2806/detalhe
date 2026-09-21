@@ -1,33 +1,33 @@
 const faqItems = [
   {
-    question: "Já é possível agendar pelo site?",
+    question: "Como faço para agendar pelo site?",
     answer:
-      "Você já pode navegar por uma demonstração completa do fluxo de agendamento, escolhendo modalidade, serviço, data, horário e dados do cliente. Nesta fase, porém, nenhuma reserva é gravada e a disponibilidade mostrada não representa a agenda real.",
+      "Escolha a modalidade, o serviço, a data e um horário disponível. Depois, informe seus dados, confira o resumo e confirme o agendamento.",
   },
   {
-    question: "Os horários mostrados estão realmente disponíveis?",
+    question: "Como funcionam os horários disponíveis?",
     answer:
-      "Não. A grade desta prévia serve para demonstrar intervalos de 15 minutos, duração dos serviços, almoço e fechamento. A versão definitiva consultará profissionais, bloqueios e agendamentos no backend antes de confirmar.",
+      "A agenda considera a duração do serviço e os profissionais disponíveis durante todo o atendimento. Antes da confirmação, o horário é validado novamente para evitar conflitos.",
   },
   {
-    question: "É possível visualizar agendamento em grupo?",
+    question: "Posso agendar para mais de uma pessoa?",
     answer:
-      "Sim. A demonstração permite adicionar participantes e escolher um serviço para cada pessoa. A validação de profissionais simultâneos será feita somente quando o backend definitivo estiver integrado.",
+      "Sim. No agendamento em grupo, adicione os participantes, escolha o serviço de cada pessoa e selecione um horário com profissionais disponíveis para atender todo o grupo.",
   },
   {
     question: "Como funciona o plano mensal?",
     answer:
-      "A página apresenta o conceito do plano mensal e permite visualizar o fluxo de agenda nessa modalidade. Valor da mensalidade e cobertura definitiva dos serviços continuam pendentes de definição comercial.",
+      "Ao escolher Plano mensal, o sistema verifica o plano ativo e os serviços incluídos. Se houver algum valor adicional, ele será informado antes da confirmação.",
   },
   {
-    question: "Os dados digitados no agendamento são armazenados?",
+    question: "Como recebo a confirmação do agendamento?",
     answer:
-      "Não. Nome, telefone e escolhas do agendamento permanecem apenas na memória da página durante a demonstração e desaparecem ao atualizar ou sair do site.",
+      "Depois de confirmar, a tela apresenta os dados do atendimento e a confirmação também é enviada para o WhatsApp informado.",
   },
   {
-    question: "O que será desenvolvido depois da aprovação?",
+    question: "O que acontece se o horário não estiver mais disponível?",
     answer:
-      "A evolução prevista inclui persistência no backend, disponibilidade real de profissionais, prevenção de conflitos, protocolo, confirmação por n8n, plano mensal, Pix e automações de cobrança.",
+      "A disponibilidade é conferida novamente no momento da confirmação. Se o horário tiver sido ocupado, você será avisado e poderá escolher outro.",
   },
 ];
 
@@ -36,7 +36,7 @@ export function FaqSection() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="section__heading">
         <span className="eyebrow">Dúvidas frequentes</span>
-        <h2 id="faq-title">O que já pode ser demonstrado e o que depende do backend</h2>
+        <h2 id="faq-title">Tudo o que você precisa saber para agendar</h2>
       </div>
 
       <div className="faq-list">
