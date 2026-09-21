@@ -85,8 +85,12 @@ const BRAZILIAN_DDDS = new Set([
   "91", "92", "93", "94", "95", "96", "97", "98", "99",
 ]);
 
-function formatBrazilianWhatsApp(value: string): string {
-  const digits = value.replace(/\D/g, "").slice(0, 11);
+function formatBrazilianWhatsApp(value: string): string | null {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length > 11) {
+    return null;
+  }
 
   if (digits.length === 0) {
     return "";
@@ -638,14 +642,22 @@ export function BookingDemoSection() {
                         placeholder="(21) 97562-3471"
                         aria-describedby="booking-phone-help"
                         aria-invalid={phone.length > 0 && !whatsappIsValid}
-                        onChange={(event) => setPhone(formatBrazilianWhatsApp(event.target.value))}
+                        onChange={(event) => {
+                          const formattedWhatsApp = formatBrazilianWhatsApp(event.target.value);
+
+                          if (formattedWhatsApp !== null) {
+                            setPhone(formattedWhatsApp);
+                          }
+                        }}
                       />
                       <small id="booking-phone-help" aria-live="polite">
                         {phone.length === 0
                           ? "Digite um celular com WhatsApp e DDD. Ex.: (21) 97562-3471."
-                          : whatsappIsValid
-                            ? "Número no formato esperado para WhatsApp."
-                            : "Informe um celular brasileiro válido com DDD e número iniciado por 9."}
+                          : phone.replace(/\D/g, "").length < 11
+                            ? "Continue digitando o WhatsApp com DDD."
+                            : whatsappIsValid
+                              ? "WhatsApp pronto para continuar."
+                              : "Informe um celular brasileiro válido com DDD e número iniciado por 9."}
                       </small>
                     </label>
                   </div>
