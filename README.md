@@ -30,6 +30,11 @@ O cliente pode visualizar:
 - próximos dias de atendimento de terça a sábado;
 - grade de horários a cada 15 minutos;
 - duração dos serviços sempre em múltiplos de 15 minutos;
+- destaque de todas as janelas consumidas pela duração escolhida;
+- janelas demonstrativas ocupadas e desabilitadas;
+- profissionais disponíveis exibidos em cada janela;
+- Barbeiro A, Barbeiro B e Barbeiro C como identificadores explícitos de demonstração;
+- validação de um mesmo profissional livre durante toda a duração do serviço;
 - bloqueio visual do almoço entre 12:00 e 13:00;
 - respeito à duração do serviço para não ultrapassar almoço ou fechamento;
 - preenchimento de nome e WhatsApp com máscara brasileira `(DD) 9XXXX-XXXX`;
@@ -40,7 +45,7 @@ O cliente pode visualizar:
 A demonstração **não**:
 
 - consulta disponibilidade real;
-- conhece profissionais cadastrados;
+- conhece profissionais reais cadastrados;
 - reserva horário;
 - cria protocolo;
 - grava dados;
@@ -50,6 +55,8 @@ A demonstração **não**:
 - dispara n8n.
 
 Todos os dados digitados existem apenas no estado React da página e desaparecem ao atualizar ou sair do site.
+
+A disponibilidade exibida nesta fase também é apenas demonstrativa. Os identificadores `Barbeiro A`, `Barbeiro B` e `Barbeiro C` não representam pessoas reais. A versão definitiva receberá profissionais, bloqueios e ocupações reais do backend.
 
 A validação desta fase confirma apenas o formato de um número móvel brasileiro. A confirmação de que o número está efetivamente registrado no WhatsApp dependerá da integração futura com o provedor de WhatsApp/n8n. Quando o backend for implementado, o número deverá ser normalizado para o formato internacional antes do envio à automação, por exemplo `+5521975623471`.
 

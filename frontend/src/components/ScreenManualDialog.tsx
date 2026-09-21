@@ -72,18 +72,22 @@ export function ScreenManualDialog() {
             <p>
               Cliente avulso e plano mensal escolhem um serviço. Em grupo, é possível adicionar dois
               ou mais participantes, informar uma identificação para cada pessoa e selecionar
-              serviços diferentes. A demonstração não cria profissionais fictícios e não simula
-              disponibilidade individual da equipe.
+              serviços diferentes. Como ainda não existe cadastro real da equipe, a demonstração usa
+              os identificadores Barbeiro A, Barbeiro B e Barbeiro C somente para mostrar como a
+              disponibilidade dos profissionais aparecerá na agenda.
             </p>
           </section>
 
           <section>
             <h3>Data e horário</h3>
             <p>
-              A prévia mostra dias de atendimento de terça a sábado, horários de início em
-              intervalos de 15 minutos e serviços com duração sempre em múltiplos de 15 minutos.
-              O intervalo de 12:00 a 13:00 permanece bloqueado para almoço. A duração do serviço é
-              considerada para não oferecer um início que ultrapasse o almoço ou o fechamento das 20:30.
+              A prévia mostra dias de atendimento de terça a sábado, horários divididos em janelas
+              de 15 minutos e serviços com duração sempre em múltiplos de 15 minutos. Cada janela
+              informa os barbeiros disponíveis na demonstração. Ao escolher um horário, todas as
+              janelas necessárias para a duração do serviço ficam marcadas; por exemplo, 45 minutos
+              ocupam 3 janelas. Horários demonstrativos já ocupados ficam desabilitados e um início só
+              pode ser escolhido quando o mesmo profissional estiver livre durante todo o atendimento.
+              O intervalo de 12:00 a 13:00 permanece bloqueado para almoço.
             </p>
           </section>
 
@@ -101,9 +105,10 @@ export function ScreenManualDialog() {
             <h3>Resumo e confirmação</h3>
             <p>
               O resumo apresenta modalidade, serviço ou participantes, duração, data, horário,
-              cliente, telefone, profissional e valor de referência. Ao concluir a simulação, a tela
-              mostra como será a confirmação do horário e informa que nenhum agendamento de verdade
-              foi feito nesta etapa de apresentação.
+              todos os blocos ocupados pelo atendimento, cliente, WhatsApp, profissional de
+              demonstração e valor de referência. Ao concluir a simulação, a tela mostra como será a
+              confirmação do horário e informa que nenhum agendamento de verdade foi feito nesta etapa
+              de apresentação.
             </p>
           </section>
 

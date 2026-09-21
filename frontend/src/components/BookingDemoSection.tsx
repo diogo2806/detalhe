@@ -9,6 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import { useMemo, useState } from "react";
+import { BookingTimeSlot } from "./BookingTimeSlot";
 
 type BookingMode = "AVULSO" | "PLANO" | "GRUPO";
 
@@ -29,6 +30,20 @@ type GroupParticipant = {
   id: number;
   name: string;
   serviceId: string;
+};
+
+type DemoBarber = "Barbeiro A" | "Barbeiro B" | "Barbeiro C";
+
+type BookingAssignment = {
+  participantLabel: string;
+  barber: DemoBarber;
+  durationMinutes: number;
+};
+
+type BookingAllocation = {
+  assignments: BookingAssignment[];
+  selectedTimes: string[];
+  selectedBarbersByTime: Record<string, DemoBarber[]>;
 };
 
 const SERVICES: ServiceDefinition[] = [
@@ -72,6 +87,7 @@ const MORNING_END = 12 * 60;
 const AFTERNOON_START = 13 * 60;
 const AFTERNOON_END = 20 * 60 + 30;
 const SLOT_INTERVAL = 15;
+const DEMO_BARBERS: DemoBarber[] = ["Barbeiro A", "Barbeiro B", "Barbeiro C"];
 
 const BRAZILIAN_DDDS = new Set([
   "11", "12", "13", "14", "15", "16", "17", "18", "19",
@@ -148,14 +164,174 @@ function minutesToTime(totalMinutes: number): string {
   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 }
 
-function generateSegmentSlots(start: number, end: number, durationMinutes: number): string[] {
+function generateSegmentSlots(start: number, end: number): string[] {
   const slots: string[] = [];
 
-  for (let slotStart = start; slotStart + durationMinutes <= end; slotStart += SLOT_INTERVAL) {
+  for (let slotStart = start; slotStart < end; slotStart += SLOT_INTERVAL) {
     slots.push(minutesToTime(slotStart));
   }
 
   return slots;
+}
+
+function timeToMinutes(time: string): number {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+function getDemoAvailableBarbers(dateIso: string, time: string): DemoBarber[] {
+  const daySeed = Number(dateIso.slice(-2));
+  const slotIndex = Math.floor((timeToMinutes(time) - MORNING_START) / SLOT_INTERVAL);
+  const patterns: DemoBarber[][] = [
+    ["Barbeiro A", "Barbeiro B", "Barbeiro C"],
+    ["Barbeiro A", "Barbeiro B"],
+    ["Barbeiro B", "Barbeiro C"],
+    ["Barbeiro A", "Barbeiro C"],
+    ["Barbeiro A", "Barbeiro B", "Barbeiro C"],
+    ["Barbeiro A"],
+    ["Barbeiro B"],
+    ["Barbeiro C"],
+    [],
+    ["Barbeiro A", "Barbeiro B"],
+    ["Barbeiro A", "Barbeiro C"],
+    ["Barbeiro B", "Barbeiro C"],
+  ];
+
+  return patterns[Math.abs(slotIndex + daySeed) % patterns.length];
+}
+
+function getRequiredTimes(
+  startTime: string,
+  durationMinutes: number,
+  periodSlots: string[],
+): string[] | null {
+  const requiredWindows = durationMinutes / SLOT_INTERVAL;
+  const startIndex = periodSlots.indexOf(startTime);
+
+  if (startIndex < 0 || startIndex + requiredWindows > periodSlots.length) {
+    return null;
+  }
+
+  return periodSlots.slice(startIndex, startIndex + requiredWindows);
+}
+
+function getCommonBarbers(dateIso: string, times: string[]): DemoBarber[] {
+  if (times.length === 0) {
+    return [];
+  }
+
+  return DEMO_BARBERS.filter((barber) =>
+    times.every((time) => getDemoAvailableBarbers(dateIso, time).includes(barber)),
+  );
+}
+
+function assignGroupBarbers(
+  dateIso: string,
+  startTime: string,
+  participants: GroupParticipant[],
+  periodSlots: string[],
+): BookingAssignment[] | null {
+  const options = participants.map((participant, index) => {
+    const service = getService(participant.serviceId);
+    const times = getRequiredTimes(startTime, service.durationMinutes, periodSlots);
+
+    return {
+      participantLabel: participant.name.trim() || `Participante ${index + 1}`,
+      durationMinutes: service.durationMinutes,
+      barbers: times ? getCommonBarbers(dateIso, times) : [],
+    };
+  });
+
+  if (options.some((option) => option.barbers.length === 0) || options.length > DEMO_BARBERS.length) {
+    return null;
+  }
+
+  const assignments: BookingAssignment[] = [];
+
+  function backtrack(index: number, usedBarbers: Set<DemoBarber>): boolean {
+    if (index === options.length) {
+      return true;
+    }
+
+    const option = options[index];
+
+    for (const barber of option.barbers) {
+      if (usedBarbers.has(barber)) {
+        continue;
+      }
+
+      usedBarbers.add(barber);
+      assignments.push({
+        participantLabel: option.participantLabel,
+        barber,
+        durationMinutes: option.durationMinutes,
+      });
+
+      if (backtrack(index + 1, usedBarbers)) {
+        return true;
+      }
+
+      assignments.pop();
+      usedBarbers.delete(barber);
+    }
+
+    return false;
+  }
+
+  return backtrack(0, new Set<DemoBarber>()) ? assignments : null;
+}
+
+function buildAllocation(
+  dateIso: string,
+  startTime: string,
+  mode: BookingMode,
+  durationMinutes: number,
+  participants: GroupParticipant[],
+  periodSlots: string[],
+): BookingAllocation | null {
+  const selectedTimes = getRequiredTimes(startTime, durationMinutes, periodSlots);
+
+  if (!selectedTimes) {
+    return null;
+  }
+
+  const assignments =
+    mode === "GRUPO"
+      ? assignGroupBarbers(dateIso, startTime, participants, periodSlots)
+      : (() => {
+          const commonBarbers = getCommonBarbers(dateIso, selectedTimes);
+
+          if (commonBarbers.length === 0) {
+            return null;
+          }
+
+          return [
+            {
+              participantLabel: "Cliente",
+              barber: commonBarbers[0],
+              durationMinutes,
+            },
+          ];
+        })();
+
+  if (!assignments) {
+    return null;
+  }
+
+  const selectedBarbersByTime: Record<string, DemoBarber[]> = {};
+
+  for (const time of selectedTimes) {
+    const elapsedMinutes = timeToMinutes(time) - timeToMinutes(startTime);
+    selectedBarbersByTime[time] = assignments
+      .filter((assignment) => elapsedMinutes < assignment.durationMinutes)
+      .map((assignment) => assignment.barber);
+  }
+
+  return {
+    assignments,
+    selectedTimes,
+    selectedBarbersByTime,
+  };
 }
 
 function toIsoDate(date: Date): string {
@@ -229,14 +405,21 @@ export function BookingDemoSection() {
   );
   const effectiveDuration = mode === "GRUPO" ? groupDuration : selectedService.durationMinutes;
 
-  const morningSlots = useMemo(
-    () => generateSegmentSlots(MORNING_START, MORNING_END, effectiveDuration),
-    [effectiveDuration],
-  );
-  const afternoonSlots = useMemo(
-    () => generateSegmentSlots(AFTERNOON_START, AFTERNOON_END, effectiveDuration),
-    [effectiveDuration],
-  );
+  const morningSlots = useMemo(() => generateSegmentSlots(MORNING_START, MORNING_END), []);
+  const afternoonSlots = useMemo(() => generateSegmentSlots(AFTERNOON_START, AFTERNOON_END), []);
+
+  const selectedPeriodSlots =
+    selectedTime && timeToMinutes(selectedTime) < MORNING_END ? morningSlots : afternoonSlots;
+  const selectedAllocation = selectedTime
+    ? buildAllocation(
+        selectedDate,
+        selectedTime,
+        mode,
+        effectiveDuration,
+        participants,
+        selectedPeriodSlots,
+      )
+    : null;
 
   const selectedDateOption = dates.find((date) => date.iso === selectedDate);
   const groupTotal = participants.reduce(
@@ -251,7 +434,8 @@ export function BookingDemoSection() {
       participants.every(
         (participant) => participant.name.trim().length > 0 && participant.serviceId.length > 0,
       ));
-  const stepTwoValid = selectedDate.length > 0 && selectedTime.length > 0;
+  const stepTwoValid =
+    selectedDate.length > 0 && selectedTime.length > 0 && selectedAllocation !== null;
   const stepThreeValid = responsibleName.trim().length > 1 && whatsappIsValid;
 
   const changeMode = (newMode: BookingMode) => {
@@ -331,8 +515,8 @@ export function BookingDemoSection() {
           <h2 id="agendamento-title">Veja como será o agendamento online</h2>
         </div>
         <p>
-          Esta versão serve apenas para apresentação. Nenhum horário é consultado no backend,
-          reservado, persistido ou enviado ao n8n.
+          Os horários e profissionais abaixo são exemplos para você conhecer o fluxo.
+          Nenhuma reserva real é feita nesta versão.
         </p>
       </div>
 
@@ -444,8 +628,8 @@ export function BookingDemoSection() {
                         <div>
                           <h4>Participantes</h4>
                           <p>
-                            Cada pessoa pode escolher um serviço diferente. A capacidade simultânea
-                            será validada apenas na versão com backend.
+                            Cada pessoa pode escolher um serviço diferente. Na versão final, o sistema
+                            só mostrará horários com profissionais suficientes para atender todo o grupo.
                           </p>
                         </div>
                         <button className="button button--secondary" type="button" onClick={addParticipant}>
@@ -507,8 +691,8 @@ export function BookingDemoSection() {
 
                   {mode === "PLANO" && (
                     <div className="booking-inline-message" role="note">
-                      A cobertura definitiva de cada serviço pelo plano mensal ainda será parametrizada.
-                      Nesta prévia, o valor da tabela permanece visível apenas como referência.
+                      Os serviços incluídos no plano mensal ainda serão definidos. Nesta prévia,
+                      o valor da tabela permanece visível apenas como referência.
                     </div>
                   )}
                 </div>
@@ -547,6 +731,12 @@ export function BookingDemoSection() {
                     ))}
                   </div>
 
+                  <div className="booking-inline-message" role="note">
+                    Este atendimento ocupa <strong>{effectiveDuration / SLOT_INTERVAL}</strong>{" "}
+                    {effectiveDuration / SLOT_INTERVAL === 1 ? "janela" : "janelas"} de 15 minutos.
+                    Os nomes abaixo são profissionais de demonstração.
+                  </div>
+
                   <div className="booking-times">
                     <div className="booking-times__period">
                       <div className="booking-times__heading">
@@ -554,21 +744,34 @@ export function BookingDemoSection() {
                         <strong>Manhã • 09:00–12:00</strong>
                       </div>
                       <div className="booking-time-grid">
-                        {morningSlots.map((time) => (
-                          <button
-                            className={
-                              selectedTime === time
-                                ? "booking-time booking-time--selected"
-                                : "booking-time"
-                            }
-                            type="button"
-                            key={time}
-                            aria-pressed={selectedTime === time}
-                            onClick={() => setSelectedTime(time)}
-                          >
-                            {time}
-                          </button>
-                        ))}
+                        {morningSlots.map((time) => {
+                          const allocation = buildAllocation(
+                            selectedDate,
+                            time,
+                            mode,
+                            effectiveDuration,
+                            participants,
+                            morningSlots,
+                          );
+                          const selectedBarbers =
+                            selectedAllocation?.selectedBarbersByTime[time] ?? [];
+
+                          return (
+                            <BookingTimeSlot
+                              key={time}
+                              time={time}
+                              availableBarbers={getDemoAvailableBarbers(selectedDate, time)}
+                              selectedBarbers={selectedBarbers}
+                              canStart={allocation !== null}
+                              isSelected={selectedBarbers.length > 0}
+                              onSelect={() => {
+                                if (allocation) {
+                                  setSelectedTime(time);
+                                }
+                              }}
+                            />
+                          );
+                        })}
                       </div>
                     </div>
 
@@ -582,28 +785,42 @@ export function BookingDemoSection() {
                         <strong>Tarde/noite • 13:00–20:30</strong>
                       </div>
                       <div className="booking-time-grid">
-                        {afternoonSlots.map((time) => (
-                          <button
-                            className={
-                              selectedTime === time
-                                ? "booking-time booking-time--selected"
-                                : "booking-time"
-                            }
-                            type="button"
-                            key={time}
-                            aria-pressed={selectedTime === time}
-                            onClick={() => setSelectedTime(time)}
-                          >
-                            {time}
-                          </button>
-                        ))}
+                        {afternoonSlots.map((time) => {
+                          const allocation = buildAllocation(
+                            selectedDate,
+                            time,
+                            mode,
+                            effectiveDuration,
+                            participants,
+                            afternoonSlots,
+                          );
+                          const selectedBarbers =
+                            selectedAllocation?.selectedBarbersByTime[time] ?? [];
+
+                          return (
+                            <BookingTimeSlot
+                              key={time}
+                              time={time}
+                              availableBarbers={getDemoAvailableBarbers(selectedDate, time)}
+                              selectedBarbers={selectedBarbers}
+                              canStart={allocation !== null}
+                              isSelected={selectedBarbers.length > 0}
+                              onSelect={() => {
+                                if (allocation) {
+                                  setSelectedTime(time);
+                                }
+                              }}
+                            />
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
 
                   <div className="booking-inline-message" role="note">
-                    Duração considerada nesta simulação: <strong>{formatDuration(effectiveDuration)}</strong>.
-                    Nenhum conflito com agenda real ou profissional é consultado nesta versão.
+                    Janelas com <strong>Horário ocupado</strong> ficam bloqueadas. Para iniciar um
+                    atendimento, precisa existir profissional disponível durante toda a duração do
+                    serviço.
                   </div>
                 </div>
               )}
@@ -675,7 +892,7 @@ export function BookingDemoSection() {
                     <span className="eyebrow">Etapa 4 de 4</span>
                     <h3>Confira a prévia antes da confirmação</h3>
                     <p>
-                      O sistema definitivo fará uma nova validação de disponibilidade antes de salvar.
+                      Antes de concluir de verdade, o sistema confirmará se o horário ainda está disponível.
                     </p>
                   </div>
 
@@ -726,8 +943,12 @@ export function BookingDemoSection() {
                       <strong>{selectedDateOption?.fullLabel ?? selectedDate}</strong>
                     </div>
                     <div className="booking-summary__row">
-                      <span>Horário</span>
+                      <span>Início</span>
                       <strong>{selectedTime}</strong>
+                    </div>
+                    <div className="booking-summary__row">
+                      <span>Horários do atendimento</span>
+                      <strong>{selectedAllocation?.selectedTimes.join(" • ")}</strong>
                     </div>
                     <div className="booking-summary__row">
                       <span>{mode === "GRUPO" ? "Responsável" : "Cliente"}</span>
@@ -738,8 +959,17 @@ export function BookingDemoSection() {
                       <strong>{phone}</strong>
                     </div>
                     <div className="booking-summary__row">
-                      <span>Profissional</span>
-                      <strong>Será definido conforme disponibilidade real</strong>
+                      <span>{mode === "GRUPO" ? "Profissionais" : "Profissional"}</span>
+                      <strong>
+                        {selectedAllocation?.assignments
+                          .map((assignment) =>
+                            mode === "GRUPO"
+                              ? `${assignment.participantLabel}: ${assignment.barber}`
+                              : assignment.barber,
+                          )
+                          .join(" • ")}{" "}
+                        (demonstração)
+                      </strong>
                     </div>
                     <div className="booking-summary__row">
                       <span>{mode === "PLANO" ? "Valor de referência" : "Valor"}</span>
@@ -758,8 +988,8 @@ export function BookingDemoSection() {
 
                   {mode === "GRUPO" && (
                     <div className="booking-inline-message" role="note">
-                      A versão final somente confirmará o grupo se houver uma combinação suficiente de
-                      profissionais elegíveis e disponíveis para todos os participantes.
+                      Na versão final, o grupo só será confirmado quando houver profissionais
+                      suficientes e disponíveis para todos os participantes.
                     </div>
                   )}
 
