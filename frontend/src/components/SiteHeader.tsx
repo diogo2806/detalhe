@@ -1,4 +1,5 @@
 import { Scissors } from "lucide-react";
+import { ColorPaletteDialog } from "./ColorPaletteDialog";
 import { ScreenManualDialog } from "./ScreenManualDialog";
 
 export function SiteHeader() {
@@ -28,6 +29,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="site-header__actions">
+          <ColorPaletteDialog />
           <ScreenManualDialog />
           <a className="button button--primary button--compact" href="#agendamento">
             Agendar horário
