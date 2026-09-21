@@ -141,14 +141,15 @@ export function ScreenManualDialog() {
           <section>
             <h3>Paleta de cores</h3>
             <p>
-              O botão com ícone de paleta, ao lado do Manual da Tela, permite comparar quatro
-              direções de identidade visual: azul-marinho e dourado para confiança e sofisticação,
-              grafite e cobre para sofisticação e robustez, bordô e creme para elegância e
-              personalidade, e madeira e bege para tradição e acolhimento. Essas associações servem
-              como referência de posicionamento e podem variar conforme contexto, cultura e público.
-              No modo Aleatório, uma dessas direções é sorteada ao iniciar o site. Ao escolher uma
-              paleta específica, a preferência fica salva neste navegador até o usuário voltar ao modo
-              Aleatório. A troca é somente visual e não altera dados nem regras do agendamento.
+              O botão com ícone de paleta, ao lado do Manual da Tela, permite comparar dez
+              direções de identidade visual: azul-marinho e dourado, grafite e cobre, bordô e creme,
+              madeira e bege, verde-musgo e latão, índigo e prata, violeta e dourado,
+              verde-petróleo e areia, laranja queimado e carvão, e preto e marfim. Cada opção traz uma
+              intenção de marca baseada em associações de psicologia das cores, que podem variar
+              conforme contexto, cultura e público. No modo Aleatório, uma dessas dez direções é
+              sorteada ao iniciar o site. Ao escolher uma paleta específica, a preferência fica salva
+              neste navegador até o usuário voltar ao modo Aleatório. A troca é somente visual e não
+              altera dados nem regras do agendamento.
             </p>
           </section>
 
