@@ -60,7 +60,7 @@
   width: min(620px, calc(100% - 2rem));
 }
 
-.color-palette-dialog__intro {
+.screen-manual__content .color-palette-dialog__intro {
   margin: 0 0 1rem;
 }
 
