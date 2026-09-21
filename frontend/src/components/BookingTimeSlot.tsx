@@ -37,7 +37,7 @@ export function BookingTimeSlot({
     : isOccupied
       ? `${time}. Horário ocupado. Nenhum barbeiro disponível nesta janela.`
       : cannotStartHere
-        ? `${time}. Barbeiros nesta janela: ${availableBarbers.join(", ")}. Não é possível iniciar um serviço de ${requiredDurationMinutes} minutos aqui porque não há continuidade suficiente.`
+        ? `${time}. Disponíveis só nesta janela: ${availableBarbers.join(", ")}. Não é possível iniciar um serviço de ${requiredDurationMinutes} minutos aqui porque não há continuidade suficiente.`
         : `${time}. Disponíveis para os ${requiredDurationMinutes} minutos: ${startAvailableBarbers.join(", ")}.`;
 
   return (
@@ -63,7 +63,7 @@ export function BookingTimeSlot({
         </>
       ) : cannotStartHere ? (
         <>
-          <span className="booking-time__status">Barbeiros nesta janela</span>
+          <span className="booking-time__status">Disponíveis só nesta janela</span>
           <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
           <span className="booking-time__hint">
             Não é possível iniciar {requiredDurationMinutes} min aqui

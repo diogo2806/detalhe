@@ -88,7 +88,9 @@ export function ScreenManualDialog() {
               ocupam 3 janelas. O horário inicial só pode ser escolhido quando o mesmo profissional
               estiver livre durante todas essas janelas. Uma janela amarela pode ter barbeiro naquele
               bloco, mas não pode ser usada como início porque não há continuidade suficiente até o
-              fim do serviço. Uma janela vermelha significa que não existe barbeiro disponível naquele
+              fim do serviço. Para deixar isso claro, esse estado usa o texto "Disponíveis só nesta
+              janela", enquanto horários válidos para início mostram "Disponíveis para X min". Uma
+              janela vermelha significa que não existe barbeiro disponível naquele
               bloco. Antes de marcar um atendimento, a demonstração também confere novamente se o
               barbeiro atribuído está disponível em cada janela selecionada. Enquanto não houver uma
               seleção válida, o botão Continuar permanece desabilitado. O intervalo de 12:00 a 13:00
