@@ -12,6 +12,12 @@
   --color-primary-hover: #e0b485;
   --color-primary-ink: #241405;
   --color-success: #8bd5ae;
+  --color-danger: #fecaca;
+  --color-danger-border: #b45353;
+  --color-danger-surface: #2b1519;
+  --color-warning: #f6c177;
+  --color-warning-border: #9a6a32;
+  --color-warning-surface: #2a2116;
   --shadow-card: 0 18px 45px rgba(0, 0, 0, 0.24);
   --radius-sm: 0.5rem;
   --radius-md: 0.875rem;
