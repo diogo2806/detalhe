@@ -1,7 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { initializePalette } from "./shared/palette";
 import "./shared/styles/index.css";
+
+initializePalette();
 
 const rootElement = document.getElementById("root");
 
