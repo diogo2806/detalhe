@@ -2,27 +2,32 @@ const faqItems = [
   {
     question: "Já é possível agendar pelo site?",
     answer:
-      "Ainda não. Esta primeira versão é uma prévia estática para aprovação. Enquanto o sistema de agenda não é ativado, o atendimento continua sendo combinado diretamente pelo WhatsApp.",
+      "Você já pode navegar por uma demonstração completa do fluxo de agendamento, escolhendo modalidade, serviço, data, horário e dados do cliente. Nesta fase, porém, nenhuma reserva é gravada e a disponibilidade mostrada não representa a agenda real.",
   },
   {
-    question: "Os serviços e preços já aparecem no site?",
+    question: "Os horários mostrados estão realmente disponíveis?",
     answer:
-      "Sim. A prévia apresenta a tabela informativa de serviços e valores para facilitar a decisão do cliente antes do contato.",
+      "Não. A grade desta prévia serve para demonstrar intervalos de 15 minutos, duração dos serviços, almoço e fechamento. A versão definitiva consultará profissionais, bloqueios e agendamentos no backend antes de confirmar.",
+  },
+  {
+    question: "É possível visualizar agendamento em grupo?",
+    answer:
+      "Sim. A demonstração permite adicionar participantes e escolher um serviço para cada pessoa. A validação de profissionais simultâneos será feita somente quando o backend definitivo estiver integrado.",
   },
   {
     question: "Como funciona o plano mensal?",
     answer:
-      "A página apresenta o conceito do plano mensal. Condições, cobertura e adesão devem ser confirmadas diretamente com a barbearia nesta fase.",
+      "A página apresenta o conceito do plano mensal e permite visualizar o fluxo de agenda nessa modalidade. Valor da mensalidade e cobertura definitiva dos serviços continuam pendentes de definição comercial.",
   },
   {
-    question: "O site coleta meu nome, telefone ou outros dados?",
+    question: "Os dados digitados no agendamento são armazenados?",
     answer:
-      "Não. Nesta fase não há formulário, conta, banco de dados ou backend. Os contatos acontecem pelos serviços externos indicados na página.",
+      "Não. Nome, telefone e escolhas do agendamento permanecem apenas na memória da página durante a demonstração e desaparecem ao atualizar ou sair do site.",
   },
   {
     question: "O que será desenvolvido depois da aprovação?",
     answer:
-      "A evolução prevista inclui agendamento online, disponibilidade de profissionais, serviços com múltiplas janelas, grupos, plano mensal, Pix e automações com n8n.",
+      "A evolução prevista inclui persistência no backend, disponibilidade real de profissionais, prevenção de conflitos, protocolo, confirmação por n8n, plano mensal, Pix e automações de cobrança.",
   },
 ];
 
@@ -31,7 +36,7 @@ export function FaqSection() {
     <section className="section" id="faq" aria-labelledby="faq-title">
       <div className="section__heading">
         <span className="eyebrow">Dúvidas frequentes</span>
-        <h2 id="faq-title">O que já está nesta prévia e o que vem depois</h2>
+        <h2 id="faq-title">O que já pode ser demonstrado e o que depende do backend</h2>
       </div>
 
       <div className="faq-list">
