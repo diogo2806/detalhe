@@ -1,6 +1,7 @@
 type BookingTimeSlotProps = {
   time: string;
   availableBarbers: string[];
+  startAvailableBarbers: string[];
   selectedBarbers: string[];
   canStart: boolean;
   isSelected: boolean;
@@ -11,6 +12,7 @@ type BookingTimeSlotProps = {
 export function BookingTimeSlot({
   time,
   availableBarbers,
+  startAvailableBarbers,
   selectedBarbers,
   canStart,
   isSelected,
@@ -18,14 +20,14 @@ export function BookingTimeSlot({
   onSelect,
 }: BookingTimeSlotProps) {
   const isOccupied = availableBarbers.length === 0;
-  const isUnavailable = !isOccupied && !canStart;
-  const isDisabled = isOccupied || isUnavailable;
+  const cannotStartHere = !isOccupied && !canStart;
+  const isDisabled = isOccupied || cannotStartHere;
 
   const classNames = [
     "booking-time",
     isSelected ? "booking-time--selected" : "",
     isOccupied ? "booking-time--occupied" : "",
-    isUnavailable ? "booking-time--unavailable" : "",
+    cannotStartHere ? "booking-time--unavailable" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -33,10 +35,10 @@ export function BookingTimeSlot({
   const accessibilityLabel = isSelected
     ? `${time}. Seu atendimento. ${selectedBarbers.join(", ")}.`
     : isOccupied
-      ? `${time}. Horário ocupado.`
-      : isUnavailable
-        ? `${time}. Sem vaga para este serviço. Nenhum barbeiro está livre durante todos os ${requiredDurationMinutes} minutos.`
-        : `${time}. Disponíveis: ${availableBarbers.join(", ")}.`;
+      ? `${time}. Horário ocupado. Nenhum barbeiro disponível nesta janela.`
+      : cannotStartHere
+        ? `${time}. Barbeiros nesta janela: ${availableBarbers.join(", ")}. Não é possível iniciar um serviço de ${requiredDurationMinutes} minutos aqui porque não há continuidade suficiente.`
+        : `${time}. Disponíveis para os ${requiredDurationMinutes} minutos: ${startAvailableBarbers.join(", ")}.`;
 
   return (
     <button
@@ -57,19 +59,22 @@ export function BookingTimeSlot({
       ) : isOccupied ? (
         <>
           <span className="booking-time__status">Horário ocupado</span>
-          <span className="booking-time__hint">Não disponível</span>
+          <span className="booking-time__hint">Nenhum barbeiro disponível nesta janela</span>
         </>
-      ) : isUnavailable ? (
+      ) : cannotStartHere ? (
         <>
-          <span className="booking-time__status">Sem vaga para este serviço</span>
+          <span className="booking-time__status">Barbeiros nesta janela</span>
+          <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
           <span className="booking-time__hint">
-            Nenhum barbeiro livre durante todos os {requiredDurationMinutes} min
+            Não é possível iniciar {requiredDurationMinutes} min aqui
           </span>
         </>
       ) : (
         <>
-          <span className="booking-time__status">Disponíveis</span>
-          <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
+          <span className="booking-time__status">
+            Disponíveis para {requiredDurationMinutes} min
+          </span>
+          <span className="booking-time__barbers">{startAvailableBarbers.join(" • ")}</span>
         </>
       )}
     </button>
