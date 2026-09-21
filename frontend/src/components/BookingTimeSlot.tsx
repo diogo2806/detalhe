@@ -23,22 +23,23 @@ export function BookingTimeSlot({
   const cannotStartHere = !isOccupied && !canStart;
   const isDisabled = isOccupied || cannotStartHere;
 
-  const classNames = [
-    "booking-time",
-    isSelected ? "booking-time--selected" : "",
-    isOccupied ? "booking-time--occupied" : "",
-    cannotStartHere ? "booking-time--unavailable" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const stateClassName = isSelected
+    ? "booking-time--selected"
+    : isOccupied
+      ? "booking-time--occupied"
+      : cannotStartHere
+        ? "booking-time--unavailable"
+        : "";
+
+  const classNames = ["booking-time", stateClassName].filter(Boolean).join(" ");
 
   const accessibilityLabel = isSelected
     ? `${time}. Seu atendimento. ${selectedBarbers.join(", ")}.`
     : isOccupied
       ? `${time}. Horário ocupado. Nenhum barbeiro disponível nesta janela.`
       : cannotStartHere
-        ? `${time}. Disponíveis só nesta janela: ${availableBarbers.join(", ")}. Não é possível iniciar um serviço de ${requiredDurationMinutes} minutos aqui porque não há continuidade suficiente.`
-        : `${time}. Disponíveis para os ${requiredDurationMinutes} minutos: ${startAvailableBarbers.join(", ")}.`;
+        ? `${time}. Disponíveis nesta janela: ${availableBarbers.join(", ")}. Nenhum desses profissionais permanece disponível durante todos os ${requiredDurationMinutes} minutos necessários.`
+        : `${time}. Disponíveis nesta janela: ${availableBarbers.join(", ")}. Podem iniciar um atendimento de ${requiredDurationMinutes} minutos: ${startAvailableBarbers.join(", ")}.`;
 
   return (
     <button
@@ -63,18 +64,19 @@ export function BookingTimeSlot({
         </>
       ) : cannotStartHere ? (
         <>
-          <span className="booking-time__status">Disponíveis só nesta janela</span>
+          <span className="booking-time__status">Disponíveis nesta janela</span>
           <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
           <span className="booking-time__hint">
-            Não é possível iniciar {requiredDurationMinutes} min aqui
+            Nenhum fica livre por {requiredDurationMinutes} min
           </span>
         </>
       ) : (
         <>
-          <span className="booking-time__status">
-            Disponíveis para {requiredDurationMinutes} min
+          <span className="booking-time__status">Disponíveis nesta janela</span>
+          <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
+          <span className="booking-time__start">
+            Podem iniciar {requiredDurationMinutes} min: {startAvailableBarbers.join(" • ")}
           </span>
-          <span className="booking-time__barbers">{startAvailableBarbers.join(" • ")}</span>
         </>
       )}
     </button>
