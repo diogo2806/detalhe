@@ -15,7 +15,7 @@ export function PlanSection() {
             mês. Os serviços incluídos podem ser agendados diretamente pela agenda online.
           </p>
           <a className="button button--primary" href={WHATSAPP_PLAN_URL} target="_blank" rel="noreferrer">
-            Quero saber mais
+            Quero conhecer o plano
           </a>
         </div>
 
@@ -23,12 +23,12 @@ export function PlanSection() {
           <article>
             <Repeat2 aria-hidden="true" size={22} />
             <h3>Recorrência</h3>
-            <p>Uma proposta pensada para clientes frequentes.</p>
+            <p>Organize seus atendimentos ao longo do mês.</p>
           </article>
           <article>
             <CalendarCheck2 aria-hidden="true" size={22} />
-            <h3>Agenda futura</h3>
-            <p>Na próxima fase, o plano poderá se integrar ao agendamento online.</p>
+            <h3>Agenda online</h3>
+            <p>Agende os serviços do plano nos horários disponíveis.</p>
           </article>
           <article>
             <CircleDollarSign aria-hidden="true" size={22} />
