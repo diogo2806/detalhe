@@ -6,7 +6,7 @@ export function SiteHeader() {
   return (
     <>
       <div className="preview-banner" role="status">
-        Demonstração do agendamento disponível • nenhuma reserva é gravada nesta versão.
+        Atendimento de terça a sábado • agende seu horário online.
       </div>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Barbearia do Detalhe - início">
