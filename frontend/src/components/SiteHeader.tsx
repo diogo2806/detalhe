@@ -1,7 +1,7 @@
 import { Scissors } from "lucide-react";
 import { ScreenManualDialog } from "./ScreenManualDialog";
 
-const WHATSAPP_URL = "https://wa.me/5521967284242";
+const WHATSAPP_URL = "https://wa.me/5521975623471";
 
 export function SiteHeader() {
   return (

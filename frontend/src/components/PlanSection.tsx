@@ -1,7 +1,7 @@
 import { CalendarCheck2, CircleDollarSign, Repeat2 } from "lucide-react";
 
 const WHATSAPP_PLAN_URL =
-  "https://wa.me/5521967284242?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Mensal%20da%20Barbearia%20do%20Detalhe.";
+  "https://wa.me/5521975623471?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Mensal%20da%20Barbearia%20do%20Detalhe.";
 
 export function PlanSection() {
   return (

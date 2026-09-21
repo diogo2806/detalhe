@@ -1,7 +1,7 @@
 import { Clock3, MapPin, MessageCircle, Navigation } from "lucide-react";
 
 const MAPS_URL = "https://maps.app.goo.gl/XS9hxaPot1yu2rwx7";
-const WHATSAPP_URL = "https://wa.me/5521967284242";
+const WHATSAPP_URL = "https://wa.me/5521975623471";
 
 export function LocationSection() {
   return (
@@ -36,7 +36,7 @@ export function LocationSection() {
             <MessageCircle aria-hidden="true" size={22} />
             <div>
               <h3>WhatsApp</h3>
-              <p>(21) 96728-4242</p>
+              <p>(21) 97562-3471</p>
             </div>
           </article>
         </div>
