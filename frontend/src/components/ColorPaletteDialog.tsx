@@ -92,7 +92,7 @@ export function ColorPaletteDialog() {
             visual, não muda o agendamento e volta ao padrão ao recarregar a página.
           </p>
 
-          <div className="color-palette-grid" aria-label="Paletas disponíveis">
+          <div className="color-palette-grid" role="group" aria-label="Paletas disponíveis">
             {PALETTES.map((palette) => {
               const isSelected = palette.id === selectedPalette;
 
