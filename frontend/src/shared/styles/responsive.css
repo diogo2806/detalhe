@@ -168,6 +168,10 @@
 }
 
 @media (max-width: 620px) {
+  .booking-time-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .booking-participant__fields,
   .booking-customer-fields {
     grid-template-columns: 1fr;
@@ -208,6 +212,10 @@
 }
 
 @media (max-width: 420px) {
+  .booking-time-grid {
+    grid-template-columns: 1fr;
+  }
+
   .booking-stepper {
     grid-template-columns: 1fr;
   }
