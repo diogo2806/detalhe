@@ -6,6 +6,8 @@ Projeto da experiência digital da Barbearia do Detalhe, em Itaguaí/RJ.
 
 A fase atual contém somente o frontend para apresentação ao cliente. Não existe backend funcional, banco de dados ou persistência.
 
+Os textos visíveis na landing representam intencionalmente a experiência planejada da versão real do produto. Portanto, a interface pública evita linguagem de protótipo ou simulação, mesmo enquanto as limitações técnicas desta fase continuam registradas nesta documentação.
+
 Objetivos desta fase:
 
 - apresentar a identidade e a proposta do novo site;
@@ -50,7 +52,7 @@ O cliente pode visualizar:
 - reposicionamento automático no bloco de agendamento ao avançar ou voltar entre etapas;
 - foco no título da nova etapa para manter o contexto também na navegação por teclado;
 - aparência do estado de confirmação;
-- seletor de paleta no cabeçalho, ao lado do Manual da Tela, sem alterar os dados do agendamento e sem persistência após recarregar a página.
+- seletor de paleta no cabeçalho, ao lado do Manual da Tela, sem alterar os dados do agendamento e com a preferência visual salva no navegador.
 
 A demonstração **não**:
 
@@ -59,7 +61,7 @@ A demonstração **não**:
 - reserva horário;
 - cria protocolo;
 - grava dados;
-- usa localStorage;
+- grava dados do agendamento em localStorage;
 - chama API;
 - envia dados para backend;
 - dispara n8n.
