@@ -57,7 +57,7 @@ const MODE_OPTIONS: Array<{
   {
     value: "PLANO",
     title: "Plano mensal",
-    description: "Prévia do fluxo para clientes com plano ativo.",
+    description: "Agende os serviços disponíveis para o seu plano ativo.",
   },
   {
     value: "GRUPO",
@@ -535,12 +535,12 @@ export function BookingDemoSection() {
     >
       <div className="section__heading section__heading--split">
         <div>
-          <span className="eyebrow">Demonstração interativa</span>
-          <h2 id="agendamento-title">Veja como será o agendamento online</h2>
+          <span className="eyebrow">Agendamento online</span>
+          <h2 id="agendamento-title">Agende seu horário</h2>
         </div>
         <p>
-          Os horários e profissionais abaixo são exemplos para você conhecer o fluxo.
-          Nenhuma reserva real é feita nesta versão.
+          Escolha a modalidade, o serviço, a data e um horário disponível.
+          
         </p>
       </div>
 
@@ -548,10 +548,10 @@ export function BookingDemoSection() {
         <div className="booking-demo__notice" role="note">
           <BadgeCheck aria-hidden="true" size={20} />
           <div>
-            <strong>Modo demonstração</strong>
+            <strong>Disponibilidade do atendimento</strong>
             <span>
-              A grade abaixo usa as regras de horário e duração do projeto, mas não representa
-              disponibilidade real de profissionais.
+              Os horários consideram a duração do serviço e os profissionais disponíveis durante
+              todo o atendimento.
             </span>
           </div>
         </div>
@@ -561,15 +561,14 @@ export function BookingDemoSection() {
             <span className="booking-demo__confirmation-icon" aria-hidden="true">
               <Check size={30} />
             </span>
-            <span className="eyebrow">Simulação concluída</span>
-            <h3>Pronto! Essa é a confirmação que você verá ao agendar.</h3>
+            <span className="eyebrow">Agendamento confirmado</span>
+            <h3>Horário agendado com sucesso!</h3>
             <p>
-              Neste teste, nenhum horário foi reservado de verdade. Quando o agendamento online
-              estiver ativo, esta tela mostrará a confirmação do seu horário e você receberá uma
-              mensagem no WhatsApp.
+              Confira os dados do atendimento. A confirmação também será enviada para o WhatsApp
+              informado.
             </p>
             <button className="button button--primary" type="button" onClick={resetDemo}>
-              Fazer nova simulação
+              Agendar outro horário
             </button>
           </div>
         ) : (
@@ -606,8 +605,8 @@ export function BookingDemoSection() {
                 <div className="booking-step">
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 1 de 4</span>
-                    <h3 ref={stepHeadingRef} tabIndex={-1}>Como será o atendimento?</h3>
-                    <p>Escolha a modalidade para visualizar o fluxo correspondente.</p>
+                    <h3 ref={stepHeadingRef} tabIndex={-1}>Como você deseja agendar?</h3>
+                    <p>Escolha a modalidade e o serviço para continuar.</p>
                   </div>
 
                   <div className="booking-mode-grid">
@@ -652,8 +651,8 @@ export function BookingDemoSection() {
                         <div>
                           <h4>Participantes</h4>
                           <p>
-                            Cada pessoa pode escolher um serviço diferente. Na versão final, o sistema
-                            só mostrará horários com profissionais suficientes para atender todo o grupo.
+                            Cada pessoa pode escolher um serviço diferente. A agenda mostra somente horários
+                            com profissionais suficientes para atender todo o grupo.
                           </p>
                         </div>
                         <button className="button button--secondary" type="button" onClick={addParticipant}>
@@ -715,8 +714,8 @@ export function BookingDemoSection() {
 
                   {mode === "PLANO" && (
                     <div className="booking-inline-message" role="note">
-                      Os serviços incluídos no plano mensal ainda serão definidos. Nesta prévia,
-                      o valor da tabela permanece visível apenas como referência.
+                      O sistema verifica os serviços incluídos no seu plano ativo antes da confirmação.
+                      Se houver valor adicional, ele será informado no resumo.
                     </div>
                   )}
                 </div>
@@ -733,7 +732,7 @@ export function BookingDemoSection() {
                     </p>
                   </div>
 
-                  <div className="booking-date-grid" role="group" aria-label="Datas de demonstração">
+                  <div className="booking-date-grid" role="group" aria-label="Datas disponíveis">
                     {dates.map((date) => (
                       <button
                         className={
@@ -881,8 +880,7 @@ export function BookingDemoSection() {
                       {mode === "GRUPO" ? "Dados do responsável" : "Seus dados"}
                     </h3>
                     <p>
-                      Na versão final, estes dados serão usados para identificar o agendamento e enviar
-                      a confirmação.
+                      Esses dados identificam o agendamento e serão usados para enviar a confirmação.
                     </p>
                   </div>
 
@@ -930,8 +928,7 @@ export function BookingDemoSection() {
                   </div>
 
                   <div className="booking-inline-message booking-inline-message--safe" role="note">
-                    Os dados digitados permanecem somente na memória desta página e desaparecem ao
-                    atualizar ou sair do site.
+                    Use um número com WhatsApp para receber a confirmação e as informações do atendimento.
                   </div>
                 </div>
               )}
@@ -941,10 +938,10 @@ export function BookingDemoSection() {
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 4 de 4</span>
                     <h3 ref={stepHeadingRef} tabIndex={-1}>
-                      Confira a prévia antes da confirmação
+                      Confira os dados antes de confirmar
                     </h3>
                     <p>
-                      Antes de concluir de verdade, o sistema confirmará se o horário ainda está disponível.
+                      A disponibilidade será validada novamente no momento da confirmação para evitar conflitos.
                     </p>
                   </div>
 
@@ -1019,12 +1016,11 @@ export function BookingDemoSection() {
                               ? `${assignment.participantLabel}: ${assignment.barber}`
                               : assignment.barber,
                           )
-                          .join(" • ")}{" "}
-                        (demonstração)
+                          .join(" • ")}
                       </strong>
                     </div>
                     <div className="booking-summary__row">
-                      <span>{mode === "PLANO" ? "Valor de referência" : "Valor"}</span>
+                      <span>Valor</span>
                       <strong>
                         {formatCurrency(mode === "GRUPO" ? groupTotal : selectedService.price)}
                       </strong>
@@ -1033,15 +1029,15 @@ export function BookingDemoSection() {
 
                   {mode === "PLANO" && (
                     <div className="booking-inline-message" role="note">
-                      A versão final verificará se o serviço está incluído no plano ativo antes de
-                      definir eventual cobrança por atendimento.
+                      O plano ativo e a cobertura do serviço serão validados antes da confirmação.
+                      Se houver valor adicional, ele será informado antes de concluir.
                     </div>
                   )}
 
                   {mode === "GRUPO" && (
                     <div className="booking-inline-message" role="note">
-                      Na versão final, o grupo só será confirmado quando houver profissionais
-                      suficientes e disponíveis para todos os participantes.
+                      O grupo só será confirmado quando houver profissionais suficientes e disponíveis
+                      para todos os participantes.
                     </div>
                   )}
 
@@ -1051,7 +1047,7 @@ export function BookingDemoSection() {
                     onClick={() => setDemoComplete(true)}
                   >
                     <Check aria-hidden="true" size={18} />
-                    Visualizar confirmação
+                    Confirmar agendamento
                   </button>
                 </div>
               )}
