@@ -559,15 +559,77 @@
 
 .booking-time-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.6rem;
 }
 
 .booking-time {
-  min-height: 44px;
-  padding: 0.55rem;
+  display: grid;
+  min-height: 104px;
+  gap: 0.3rem;
+  align-content: start;
+  padding: 0.75rem;
   border-radius: var(--radius-sm);
+  font-weight: 700;
+  text-align: left;
+}
+
+.booking-time__hour {
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.booking-time__status {
+  color: var(--color-text-muted);
+  font-size: 0.76rem;
   font-weight: 800;
+}
+
+.booking-time__barbers {
+  color: var(--color-text);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.booking-time__hint {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  line-height: 1.3;
+}
+
+.booking-time--selected {
+  border-color: var(--color-primary);
+  background: rgba(209, 163, 116, 0.16);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.booking-time--selected .booking-time__status,
+.booking-time--selected .booking-time__barbers {
+  color: var(--color-primary);
+}
+
+.booking-time--occupied {
+  border-style: dashed;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.booking-time--occupied .booking-time__hour,
+.booking-time--occupied .booking-time__status {
+  color: #728094;
+}
+
+.booking-time--unavailable {
+  opacity: 0.62;
+}
+
+.booking-time:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.booking-time:disabled:hover {
+  border-color: var(--color-border);
+  transform: none;
 }
 
 .booking-lunch-block {
