@@ -14,6 +14,7 @@ Objetivos desta fase:
 - mostrar trabalhos reais;
 - facilitar contato por WhatsApp, Instagram e Google Maps;
 - demonstrar visualmente o fluxo completo de agendamento;
+- permitir comparar quatro paletas de cores diretamente no protótipo;
 - permitir que o cliente valide experiência, textos e organização antes do desenvolvimento do núcleo definitivo.
 
 ## Demonstração do agendamento
@@ -48,7 +49,8 @@ O cliente pode visualizar:
 - resumo antes da confirmação;
 - reposicionamento automático no bloco de agendamento ao avançar ou voltar entre etapas;
 - foco no título da nova etapa para manter o contexto também na navegação por teclado;
-- aparência do estado de confirmação.
+- aparência do estado de confirmação;
+- seletor de paleta no cabeçalho, ao lado do Manual da Tela, sem alterar os dados do agendamento e sem persistência após recarregar a página.
 
 A demonstração **não**:
 
