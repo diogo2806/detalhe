@@ -31,7 +31,8 @@ O cliente pode visualizar:
 - grade de horários a cada 15 minutos;
 - bloqueio visual do almoço entre 12:00 e 13:00;
 - respeito à duração do serviço para não ultrapassar almoço ou fechamento;
-- preenchimento de nome e telefone/WhatsApp;
+- preenchimento de nome e WhatsApp com máscara brasileira `(DD) 9XXXX-XXXX`;
+- validação de DDD brasileiro e número móvel iniciado por `9`;
 - resumo antes da confirmação;
 - aparência do estado de confirmação.
 
@@ -48,6 +49,8 @@ A demonstração **não**:
 - dispara n8n.
 
 Todos os dados digitados existem apenas no estado React da página e desaparecem ao atualizar ou sair do site.
+
+A validação desta fase confirma apenas o formato de um número móvel brasileiro. A confirmação de que o número está efetivamente registrado no WhatsApp dependerá da integração futura com o provedor de WhatsApp/n8n. Quando o backend for implementado, o número deverá ser normalizado para o formato internacional antes do envio à automação, por exemplo `+5521975623471`.
 
 ## Núcleo definitivo previsto
 
