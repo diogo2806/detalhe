@@ -80,10 +80,10 @@ export function ScreenManualDialog() {
           <section>
             <h3>Data e horário</h3>
             <p>
-              A prévia mostra dias de atendimento de terça a sábado e horários de início em
-              intervalos de 15 minutos. O intervalo de 12:00 a 13:00 permanece bloqueado para almoço.
-              A duração do serviço é considerada para não oferecer um início que ultrapasse o almoço
-              ou o fechamento das 20:30.
+              A prévia mostra dias de atendimento de terça a sábado, horários de início em
+              intervalos de 15 minutos e serviços com duração sempre em múltiplos de 15 minutos.
+              O intervalo de 12:00 a 13:00 permanece bloqueado para almoço. A duração do serviço é
+              considerada para não oferecer um início que ultrapasse o almoço ou o fechamento das 20:30.
             </p>
           </section>
 

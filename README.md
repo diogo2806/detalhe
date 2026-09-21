@@ -29,6 +29,7 @@ O cliente pode visualizar:
 - serviços diferentes por participante do grupo;
 - próximos dias de atendimento de terça a sábado;
 - grade de horários a cada 15 minutos;
+- duração dos serviços sempre em múltiplos de 15 minutos;
 - bloqueio visual do almoço entre 12:00 e 13:00;
 - respeito à duração do serviço para não ultrapassar almoço ou fechamento;
 - preenchimento de nome e WhatsApp com máscara brasileira `(DD) 9XXXX-XXXX`;

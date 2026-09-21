@@ -1,15 +1,15 @@
 import { Clock3 } from "lucide-react";
 
 const services = [
-  { name: "Corte máquina & tesoura", price: "R$ 40,00", duration: "40 min" },
-  { name: "Corte navalhado", price: "R$ 40,00", duration: "40 min" },
-  { name: "Corte máquina", price: "R$ 35,00", duration: "40 min" },
+  { name: "Corte máquina & tesoura", price: "R$ 40,00", duration: "45 min" },
+  { name: "Corte navalhado", price: "R$ 40,00", duration: "45 min" },
+  { name: "Corte máquina", price: "R$ 35,00", duration: "45 min" },
   { name: "Só barba", price: "R$ 20,00", duration: "30 min" },
-  { name: "Pezinho", price: "R$ 10,00", duration: "10 min" },
-  { name: "Sobrancelha", price: "R$ 10,00", duration: "10 min" },
-  { name: "Corte & barba", price: "R$ 55,00", duration: "40 min" },
-  { name: "Corte, barba & sobrancelha", price: "R$ 55,00", duration: "40 min" },
-  { name: "Corte + pigmentação", price: "R$ 45,00", duration: "40 min" },
+  { name: "Pezinho", price: "R$ 10,00", duration: "15 min" },
+  { name: "Sobrancelha", price: "R$ 10,00", duration: "15 min" },
+  { name: "Corte & barba", price: "R$ 55,00", duration: "45 min" },
+  { name: "Corte, barba & sobrancelha", price: "R$ 55,00", duration: "45 min" },
+  { name: "Corte + pigmentação", price: "R$ 45,00", duration: "45 min" },
   { name: "Nevou + corte", price: "R$ 100,00", duration: "1 h" },
   { name: "Reflexo alinhado + corte", price: "R$ 110,00", duration: "1 h 30 min" },
 ];
