@@ -1,6 +1,6 @@
 import { Scissors } from "lucide-react";
 import { ColorPaletteDialog } from "./ColorPaletteDialog";
-import { ScreenManualDialog } from "./ScreenManualDialog";
+import { ScreenManualDialog } from "../../../../shared/components/dialogs/ScreenManualDialog";
 
 export function SiteHeader() {
   return (

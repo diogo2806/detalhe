@@ -16,7 +16,7 @@ Objetivos desta fase:
 - mostrar trabalhos reais;
 - facilitar contato por WhatsApp, Instagram e Google Maps;
 - demonstrar visualmente o fluxo completo de agendamento;
-- permitir comparar quatro direções de identidade visual inspiradas em associações de psicologia das cores;
+- permitir comparar dez direções de identidade visual inspiradas em associações de psicologia das cores;
 - permitir que o cliente valide experiência, textos e organização antes do desenvolvimento do núcleo definitivo.
 
 ## Demonstração do agendamento
@@ -52,7 +52,7 @@ O cliente pode visualizar:
 - reposicionamento automático no bloco de agendamento ao avançar ou voltar entre etapas;
 - foco no título da nova etapa para manter o contexto também na navegação por teclado;
 - aparência do estado de confirmação;
-- seletor de paleta no cabeçalho, ao lado do Manual da Tela, com quatro direções: azul-marinho e dourado (confiança e sofisticação), grafite e cobre (sofisticação e robustez), bordô e creme (elegância e personalidade) e madeira e bege (tradição e acolhimento); as associações são referências de posicionamento e variam conforme contexto, cultura e público; o modo Aleatório sorteia uma direção ao iniciar e uma paleta específica pode ficar salva localmente no navegador sem alterar os dados do agendamento.
+- seletor de paleta no cabeçalho, ao lado do Manual da Tela, com dez direções: azul-marinho e dourado, grafite e cobre, bordô e creme, madeira e bege, verde-musgo e latão, índigo e prata, violeta e dourado, verde-petróleo e areia, laranja queimado e carvão, e preto e marfim; as associações são referências de posicionamento e variam conforme contexto, cultura e público; o modo Aleatório sorteia uma das dez direções ao iniciar e uma paleta específica pode ficar salva localmente no navegador sem alterar os dados do agendamento.
 
 A demonstração **não**:
 

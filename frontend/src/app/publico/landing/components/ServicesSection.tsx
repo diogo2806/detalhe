@@ -1,6 +1,6 @@
 import { Clock3 } from "lucide-react";
-import { SERVICES } from "../shared/constants/serviceCatalog";
-import { formatCurrency, formatDuration } from "../shared/utils/formatters";
+import { SERVICES } from "../../../../shared/constants/serviceCatalog";
+import { formatCurrency, formatDuration } from "../../../../shared/utils/formatters";
 
 export function ServicesSection() {
   return (

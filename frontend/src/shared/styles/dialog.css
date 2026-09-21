@@ -117,7 +117,13 @@
     var(--palette-original-primary),
     var(--palette-graphite-primary),
     var(--palette-burgundy-primary),
-    var(--palette-blue-primary)
+    var(--palette-wood-primary),
+    var(--palette-moss-primary),
+    var(--palette-indigo-primary),
+    var(--palette-violet-primary),
+    var(--palette-teal-primary),
+    var(--palette-orange-primary),
+    var(--palette-black-primary)
   );
   color: var(--color-primary-ink);
 }
