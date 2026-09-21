@@ -356,6 +356,26 @@ function buildAllocation(
   };
 }
 
+function getStartAvailableBarbers(
+  dateIso: string,
+  startTime: string,
+  mode: BookingMode,
+  durationMinutes: number,
+  periodSlots: string[],
+  allocation: BookingAllocation | null,
+): DemoBarber[] {
+  if (!allocation) {
+    return [];
+  }
+
+  if (mode === "GRUPO") {
+    return Array.from(new Set(allocation.assignments.map((assignment) => assignment.barber)));
+  }
+
+  const requiredTimes = getRequiredTimes(startTime, durationMinutes, periodSlots);
+  return requiredTimes ? getCommonBarbers(dateIso, requiredTimes) : [];
+}
+
 function toIsoDate(date: Date): string {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -779,8 +799,14 @@ export function BookingDemoSection() {
                           );
                           const selectedBarbers =
                             selectedAllocation?.selectedBarbersByTime[time] ?? [];
-                          const startAvailableBarbers =
-                            allocation?.assignments.map((assignment) => assignment.barber) ?? [];
+                          const startAvailableBarbers = getStartAvailableBarbers(
+                            selectedDate,
+                            time,
+                            mode,
+                            effectiveDuration,
+                            morningSlots,
+                            allocation,
+                          );
 
                           return (
                             <BookingTimeSlot
@@ -824,8 +850,14 @@ export function BookingDemoSection() {
                           );
                           const selectedBarbers =
                             selectedAllocation?.selectedBarbersByTime[time] ?? [];
-                          const startAvailableBarbers =
-                            allocation?.assignments.map((assignment) => assignment.barber) ?? [];
+                          const startAvailableBarbers = getStartAvailableBarbers(
+                            selectedDate,
+                            time,
+                            mode,
+                            effectiveDuration,
+                            afternoonSlots,
+                            allocation,
+                          );
 
                           return (
                             <BookingTimeSlot
