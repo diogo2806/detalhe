@@ -35,6 +35,8 @@ O cliente pode visualizar:
 - profissionais disponíveis exibidos em cada janela;
 - Barbeiro A, Barbeiro B e Barbeiro C como identificadores explícitos de demonstração;
 - validação de um mesmo profissional livre durante toda a duração do serviço;
+- janelas sem continuidade suficiente destacadas visualmente e desabilitadas;
+- botão Continuar desabilitado enquanto não houver um horário válido selecionado;
 - bloqueio visual do almoço entre 12:00 e 13:00;
 - respeito à duração do serviço para não ultrapassar almoço ou fechamento;
 - preenchimento de nome e WhatsApp com máscara brasileira `(DD) 9XXXX-XXXX`;

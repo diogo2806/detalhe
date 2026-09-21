@@ -238,6 +238,16 @@
     flex-direction: column-reverse;
   }
 
+  .booking-demo__footer-next {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .booking-demo__continue-help {
+    max-width: none;
+    text-align: left;
+  }
+
   .booking-demo__footer .button {
     width: 100%;
   }
