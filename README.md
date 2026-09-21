@@ -64,3 +64,11 @@ npm run build
 ## Deploy
 
 O frontend possui Dockerfile próprio para implantação como App Service no EasyPanel. Não há Docker Compose.
+
+Configuração do domínio do frontend no EasyPanel:
+
+- protocolo de destino: `HTTP`;
+- porta de destino: `80`;
+- caminho: `/`.
+
+A porta `80` é exclusiva do container do frontend. Quando o backend for criado, ele será implantado como serviço separado e poderá utilizar a porta interna `8080`.
