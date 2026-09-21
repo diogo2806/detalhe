@@ -11,8 +11,8 @@ export function PlanSection() {
           <span className="eyebrow">Plano mensal</span>
           <h2 id="plano-title">Plano mensal para quem gosta de manter o corte em dia</h2>
           <p>
-            A proposta do plano mensal é transformar visitas recorrentes em uma experiência mais previsível
-            para o cliente e para a barbearia. As condições finais serão confirmadas diretamente com a equipe.
+            O plano mensal facilita a rotina de clientes frequentes e organiza os atendimentos ao longo do
+            mês. Os serviços incluídos podem ser agendados diretamente pela agenda online.
           </p>
           <a className="button button--primary" href={WHATSAPP_PLAN_URL} target="_blank" rel="noreferrer">
             Quero saber mais
