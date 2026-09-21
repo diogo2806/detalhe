@@ -281,6 +281,28 @@ function assignGroupBarbers(
   return backtrack(0, new Set<DemoBarber>()) ? assignments : null;
 }
 
+function assignmentsAreAvailable(
+  dateIso: string,
+  startTime: string,
+  assignments: BookingAssignment[],
+  periodSlots: string[],
+): boolean {
+  return assignments.every((assignment) => {
+    const assignmentTimes = getRequiredTimes(
+      startTime,
+      assignment.durationMinutes,
+      periodSlots,
+    );
+
+    return (
+      assignmentTimes !== null &&
+      assignmentTimes.every((time) =>
+        getDemoAvailableBarbers(dateIso, time).includes(assignment.barber),
+      )
+    );
+  });
+}
+
 function buildAllocation(
   dateIso: string,
   startTime: string,
@@ -314,7 +336,7 @@ function buildAllocation(
           ];
         })();
 
-  if (!assignments) {
+  if (!assignments || !assignmentsAreAvailable(dateIso, startTime, assignments, periodSlots)) {
     return null;
   }
 
@@ -704,8 +726,8 @@ export function BookingDemoSection() {
                     <span className="eyebrow">Etapa 2 de 4</span>
                     <h3>Escolha uma data e um horário</h3>
                     <p>
-                      A grade começa a cada 15 minutos e elimina inícios que fariam o atendimento
-                      ultrapassar o almoço ou o fechamento.
+                      Cada cartão representa 15 minutos. Um horário só pode ser escolhido como início
+                      quando o mesmo barbeiro estiver disponível durante toda a duração do serviço.
                     </p>
                   </div>
 
@@ -734,7 +756,9 @@ export function BookingDemoSection() {
                   <div className="booking-inline-message" role="note">
                     Este atendimento ocupa <strong>{effectiveDuration / SLOT_INTERVAL}</strong>{" "}
                     {effectiveDuration / SLOT_INTERVAL === 1 ? "janela" : "janelas"} de 15 minutos.
-                    Os nomes abaixo são profissionais de demonstração.
+                    Azul indica que o serviço pode começar ali. Amarelo indica que há barbeiro naquele
+                    bloco, mas não há continuidade suficiente para iniciar {effectiveDuration} min.
+                    Vermelho indica que ninguém está disponível naquele bloco.
                   </div>
 
                   <div className="booking-times">
@@ -755,12 +779,15 @@ export function BookingDemoSection() {
                           );
                           const selectedBarbers =
                             selectedAllocation?.selectedBarbersByTime[time] ?? [];
+                          const startAvailableBarbers =
+                            allocation?.assignments.map((assignment) => assignment.barber) ?? [];
 
                           return (
                             <BookingTimeSlot
                               key={time}
                               time={time}
                               availableBarbers={getDemoAvailableBarbers(selectedDate, time)}
+                              startAvailableBarbers={startAvailableBarbers}
                               selectedBarbers={selectedBarbers}
                               canStart={allocation !== null}
                               isSelected={selectedBarbers.length > 0}
@@ -797,12 +824,15 @@ export function BookingDemoSection() {
                           );
                           const selectedBarbers =
                             selectedAllocation?.selectedBarbersByTime[time] ?? [];
+                          const startAvailableBarbers =
+                            allocation?.assignments.map((assignment) => assignment.barber) ?? [];
 
                           return (
                             <BookingTimeSlot
                               key={time}
                               time={time}
                               availableBarbers={getDemoAvailableBarbers(selectedDate, time)}
+                              startAvailableBarbers={startAvailableBarbers}
                               selectedBarbers={selectedBarbers}
                               canStart={allocation !== null}
                               isSelected={selectedBarbers.length > 0}
@@ -820,9 +850,9 @@ export function BookingDemoSection() {
                   </div>
 
                   <div className="booking-inline-message" role="note">
-                    Janelas com <strong>Horário ocupado</strong> ficam bloqueadas. Para iniciar um
-                    atendimento, precisa existir profissional disponível durante toda a duração do
-                    serviço.
+                    <strong>Horário ocupado</strong> significa que não há barbeiro naquele bloco.
+                    Um cartão amarelo ainda pode ter barbeiro naquele momento, mas não pode ser usado
+                    como início porque não existe o mesmo profissional livre até o fim do serviço.
                   </div>
                 </div>
               )}
