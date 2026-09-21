@@ -63,7 +63,9 @@ export function ScreenManualDialog() {
             <h3>Agendamento</h3>
             <p>
               O fluxo possui quatro etapas: modalidade e serviço, data e horário, dados do cliente e
-              resumo. A modalidade pode ser cliente avulso, plano mensal ou grupo.
+              resumo. A modalidade pode ser cliente avulso, plano mensal ou grupo. Ao usar Voltar ou
+              Continuar, a página retorna ao bloco de agendamento e leva o foco ao título da nova etapa,
+              mantendo o contexto visual e de navegação por teclado.
             </p>
           </section>
 
