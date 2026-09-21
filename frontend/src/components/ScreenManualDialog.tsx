@@ -137,12 +137,11 @@ export function ScreenManualDialog() {
               O botão com ícone de paleta, ao lado do Manual da Tela, permite comparar dez
               direções de identidade visual: azul-marinho e dourado, grafite e cobre, bordô e creme,
               madeira e bege, verde-musgo e latão, índigo e prata, violeta e dourado,
-              verde-petróleo e areia, laranja queimado e carvão, e preto e marfim. Cada opção traz uma
-              intenção de marca baseada em associações de psicologia das cores, que podem variar
-              conforme contexto, cultura e público. No modo Aleatório, uma dessas dez direções é
-              sorteada ao iniciar o site. Ao escolher uma paleta específica, a preferência fica salva
-              neste navegador até o usuário voltar ao modo Aleatório. A troca é somente visual e não
-              altera dados nem regras do agendamento.
+              verde-petróleo e areia, laranja queimado e carvão, e preto e marfim. O seletor mostra
+              somente o nome e a prévia visual de cada paleta para facilitar a comparação. No modo
+              Aleatório, uma dessas dez direções é sorteada ao iniciar o site. Ao escolher uma paleta
+              específica, a preferência fica salva neste navegador até o usuário voltar ao modo
+              Aleatório. A troca é somente visual e não altera dados nem regras do agendamento.
             </p>
           </section>
 

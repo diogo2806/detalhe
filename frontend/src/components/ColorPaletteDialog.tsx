@@ -68,13 +68,6 @@ export function ColorPaletteDialog() {
         </div>
 
         <div className="screen-manual__content">
-          <p className="color-palette-dialog__intro">
-            Compare direções de marca inspiradas em associações da psicologia das cores. Essas
-            percepções variam conforme contexto, cultura e público. No modo Aleatório, o sistema
-            sorteia uma direção ao iniciar; ao escolher uma paleta específica, ela fica salva neste
-            navegador até você voltar ao modo Aleatório.
-          </p>
-
           <div className="color-palette-grid" role="group" aria-label="Paletas disponíveis">
             <button
               className={`color-palette-option${isRandomSelected ? " color-palette-option--selected" : ""}`}
@@ -87,7 +80,6 @@ export function ColorPaletteDialog() {
               </span>
               <span className="color-palette-option__content">
                 <strong>Aleatório</strong>
-                <span>Sorteia uma paleta a cada vez que o sistema é iniciado.</span>
               </span>
               {isRandomSelected && (
                 <Check className="color-palette-option__check" aria-hidden="true" size={20} />
@@ -113,7 +105,6 @@ export function ColorPaletteDialog() {
                   </span>
                   <span className="color-palette-option__content">
                     <strong>{palette.name}</strong>
-                    <span>{palette.description}</span>
                   </span>
                   {isSelected && (
                     <Check className="color-palette-option__check" aria-hidden="true" size={20} />
