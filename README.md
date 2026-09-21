@@ -36,8 +36,10 @@ O cliente pode visualizar:
 - Barbeiro A, Barbeiro B e Barbeiro C como identificadores explícitos de demonstração;
 - validação de um mesmo profissional livre durante toda a duração do serviço;
 - validação defensiva de que o barbeiro atribuído está disponível em cada janela selecionada;
-- separação entre disponibilidade do bloco e possibilidade de iniciar o serviço naquele horário;
-- janelas sem continuidade suficiente usam "Disponíveis só nesta janela", mostram os barbeiros daquele bloco e ficam desabilitadas como início;
+- separação entre barbeiros livres no bloco e barbeiros que permanecem livres por toda a duração;
+- cartões válidos mostram a disponibilidade daquela janela e, separadamente, quem pode iniciar o serviço completo;
+- janelas sem continuidade suficiente mostram quem está livre naquele bloco e ficam desabilitadas como início;
+- seleção usa estado verde, indisponibilidade parcial usa âmbar e horário ocupado usa vermelho;
 - botão Continuar desabilitado enquanto não houver um horário válido selecionado;
 - bloqueio visual do almoço entre 12:00 e 13:00;
 - respeito à duração do serviço para não ultrapassar almoço ou fechamento;
