@@ -947,7 +947,7 @@ export function BookingDemoSection() {
                       <strong>{selectedTime}</strong>
                     </div>
                     <div className="booking-summary__row">
-                      <span>Janelas ocupadas</span>
+                      <span>Horários do atendimento</span>
                       <strong>{selectedAllocation?.selectedTimes.join(" • ")}</strong>
                     </div>
                     <div className="booking-summary__row">
