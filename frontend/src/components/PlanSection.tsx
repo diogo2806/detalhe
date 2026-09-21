@@ -33,7 +33,7 @@ export function PlanSection() {
           <article>
             <CircleDollarSign aria-hidden="true" size={22} />
             <h3>Pix e lembretes</h3>
-            <p>Pagamento e automações por n8n ficam reservados para a evolução do sistema.</p>
+            <p>Lembrete de vencimento pelo WhatsApp, com opção de pagamento por Pix.</p>
           </article>
         </div>
       </div>
