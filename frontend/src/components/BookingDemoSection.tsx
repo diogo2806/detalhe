@@ -515,8 +515,8 @@ export function BookingDemoSection() {
           <h2 id="agendamento-title">Veja como será o agendamento online</h2>
         </div>
         <p>
-          Esta versão serve apenas para apresentação. Nenhum horário é consultado no backend,
-          reservado, persistido ou enviado ao n8n.
+          Os horários e profissionais abaixo são exemplos para você conhecer o fluxo.
+          Nenhuma reserva real é feita nesta versão.
         </p>
       </div>
 
@@ -628,8 +628,8 @@ export function BookingDemoSection() {
                         <div>
                           <h4>Participantes</h4>
                           <p>
-                            Cada pessoa pode escolher um serviço diferente. A capacidade simultânea
-                            será validada apenas na versão com backend.
+                            Cada pessoa pode escolher um serviço diferente. Na versão final, o sistema
+                            só mostrará horários com profissionais suficientes para atender todo o grupo.
                           </p>
                         </div>
                         <button className="button button--secondary" type="button" onClick={addParticipant}>
@@ -691,8 +691,8 @@ export function BookingDemoSection() {
 
                   {mode === "PLANO" && (
                     <div className="booking-inline-message" role="note">
-                      A cobertura definitiva de cada serviço pelo plano mensal ainda será parametrizada.
-                      Nesta prévia, o valor da tabela permanece visível apenas como referência.
+                      Os serviços incluídos no plano mensal ainda serão definidos. Nesta prévia,
+                      o valor da tabela permanece visível apenas como referência.
                     </div>
                   )}
                 </div>
@@ -892,7 +892,7 @@ export function BookingDemoSection() {
                     <span className="eyebrow">Etapa 4 de 4</span>
                     <h3>Confira a prévia antes da confirmação</h3>
                     <p>
-                      O sistema definitivo fará uma nova validação de disponibilidade antes de salvar.
+                      Antes de concluir de verdade, o sistema confirmará se o horário ainda está disponível.
                     </p>
                   </div>
 
@@ -988,8 +988,8 @@ export function BookingDemoSection() {
 
                   {mode === "GRUPO" && (
                     <div className="booking-inline-message" role="note">
-                      A versão final somente confirmará o grupo se houver uma combinação suficiente de
-                      profissionais elegíveis e disponíveis para todos os participantes.
+                      Na versão final, o grupo só será confirmado quando houver profissionais
+                      suficientes e disponíveis para todos os participantes.
                     </div>
                   )}
 
