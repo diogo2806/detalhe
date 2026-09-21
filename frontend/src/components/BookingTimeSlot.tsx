@@ -4,6 +4,7 @@ type BookingTimeSlotProps = {
   selectedBarbers: string[];
   canStart: boolean;
   isSelected: boolean;
+  requiredDurationMinutes: number;
   onSelect: () => void;
 };
 
@@ -13,16 +14,18 @@ export function BookingTimeSlot({
   selectedBarbers,
   canStart,
   isSelected,
+  requiredDurationMinutes,
   onSelect,
 }: BookingTimeSlotProps) {
   const isOccupied = availableBarbers.length === 0;
-  const isDisabled = isOccupied || !canStart;
+  const isUnavailable = !isOccupied && !canStart;
+  const isDisabled = isOccupied || isUnavailable;
 
   const classNames = [
     "booking-time",
     isSelected ? "booking-time--selected" : "",
     isOccupied ? "booking-time--occupied" : "",
-    !isOccupied && !canStart ? "booking-time--unavailable" : "",
+    isUnavailable ? "booking-time--unavailable" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -31,9 +34,9 @@ export function BookingTimeSlot({
     ? `${time}. Seu atendimento. ${selectedBarbers.join(", ")}.`
     : isOccupied
       ? `${time}. Horário ocupado.`
-      : canStart
-        ? `${time}. Disponíveis: ${availableBarbers.join(", ")}.`
-        : `${time}. Disponíveis: ${availableBarbers.join(", ")}. Não comporta a duração completa deste serviço.`;
+      : isUnavailable
+        ? `${time}. Sem vaga para este serviço. Nenhum barbeiro está livre durante todos os ${requiredDurationMinutes} minutos.`
+        : `${time}. Disponíveis: ${availableBarbers.join(", ")}.`;
 
   return (
     <button
@@ -52,14 +55,21 @@ export function BookingTimeSlot({
           <span className="booking-time__barbers">{selectedBarbers.join(" • ")}</span>
         </>
       ) : isOccupied ? (
-        <span className="booking-time__status">Horário ocupado</span>
+        <>
+          <span className="booking-time__status">Horário ocupado</span>
+          <span className="booking-time__hint">Não disponível</span>
+        </>
+      ) : isUnavailable ? (
+        <>
+          <span className="booking-time__status">Sem vaga para este serviço</span>
+          <span className="booking-time__hint">
+            Nenhum barbeiro livre durante todos os {requiredDurationMinutes} min
+          </span>
+        </>
       ) : (
         <>
           <span className="booking-time__status">Disponíveis</span>
           <span className="booking-time__barbers">{availableBarbers.join(" • ")}</span>
-          {!canStart && (
-            <span className="booking-time__hint">Não comporta este serviço</span>
-          )}
         </>
       )}
     </button>
