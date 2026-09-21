@@ -764,6 +764,7 @@ export function BookingDemoSection() {
                               selectedBarbers={selectedBarbers}
                               canStart={allocation !== null}
                               isSelected={selectedBarbers.length > 0}
+                              requiredDurationMinutes={effectiveDuration}
                               onSelect={() => {
                                 if (allocation) {
                                   setSelectedTime(time);
@@ -805,6 +806,7 @@ export function BookingDemoSection() {
                               selectedBarbers={selectedBarbers}
                               canStart={allocation !== null}
                               isSelected={selectedBarbers.length > 0}
+                              requiredDurationMinutes={effectiveDuration}
                               onSelect={() => {
                                 if (allocation) {
                                   setSelectedTime(time);
@@ -1016,14 +1018,22 @@ export function BookingDemoSection() {
               </button>
 
               {step < 4 && (
-                <button
-                  className="button button--primary"
-                  type="button"
-                  disabled={!canAdvance}
-                  onClick={() => setStep((currentStep) => Math.min(4, currentStep + 1))}
-                >
-                  Continuar
-                </button>
+                <div className="booking-demo__footer-next">
+                  {step === 2 && !stepTwoValid && (
+                    <span className="booking-demo__continue-help" role="status">
+                      Selecione um horário disponível para continuar.
+                    </span>
+                  )}
+                  <button
+                    className="button button--primary"
+                    type="button"
+                    disabled={!canAdvance}
+                    aria-disabled={!canAdvance}
+                    onClick={() => setStep((currentStep) => Math.min(4, currentStep + 1))}
+                  >
+                    Continuar
+                  </button>
+                </div>
               )}
             </div>
           </>
