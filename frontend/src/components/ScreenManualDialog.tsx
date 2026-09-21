@@ -83,13 +83,16 @@ export function ScreenManualDialog() {
             <p>
               A prévia mostra dias de atendimento de terça a sábado, horários divididos em janelas
               de 15 minutos e serviços com duração sempre em múltiplos de 15 minutos. Cada janela
-              informa os barbeiros disponíveis na demonstração. Ao escolher um horário, todas as
+              informa os barbeiros disponíveis naquele bloco. Ao escolher um horário, todas as
               janelas necessárias para a duração do serviço ficam marcadas; por exemplo, 45 minutos
               ocupam 3 janelas. O horário inicial só pode ser escolhido quando o mesmo profissional
-              estiver livre durante todas essas janelas. Horários ocupados e horários que não possuem
-              continuidade suficiente ficam desabilitados e usam cores diferentes das janelas livres.
-              Enquanto não houver uma seleção válida, o botão Continuar permanece desabilitado.
-              O intervalo de 12:00 a 13:00 permanece bloqueado para almoço.
+              estiver livre durante todas essas janelas. Uma janela amarela pode ter barbeiro naquele
+              bloco, mas não pode ser usada como início porque não há continuidade suficiente até o
+              fim do serviço. Uma janela vermelha significa que não existe barbeiro disponível naquele
+              bloco. Antes de marcar um atendimento, a demonstração também confere novamente se o
+              barbeiro atribuído está disponível em cada janela selecionada. Enquanto não houver uma
+              seleção válida, o botão Continuar permanece desabilitado. O intervalo de 12:00 a 13:00
+              permanece bloqueado para almoço.
             </p>
           </section>
 
