@@ -1,18 +1,6 @@
 import { Clock3 } from "lucide-react";
-
-const services = [
-  { name: "Corte máquina & tesoura", price: "R$ 40,00", duration: "45 min" },
-  { name: "Corte navalhado", price: "R$ 40,00", duration: "45 min" },
-  { name: "Corte máquina", price: "R$ 35,00", duration: "45 min" },
-  { name: "Só barba", price: "R$ 20,00", duration: "30 min" },
-  { name: "Pezinho", price: "R$ 10,00", duration: "15 min" },
-  { name: "Sobrancelha", price: "R$ 10,00", duration: "15 min" },
-  { name: "Corte & barba", price: "R$ 55,00", duration: "45 min" },
-  { name: "Corte, barba & sobrancelha", price: "R$ 55,00", duration: "45 min" },
-  { name: "Corte + pigmentação", price: "R$ 45,00", duration: "45 min" },
-  { name: "Nevou + corte", price: "R$ 100,00", duration: "1 h" },
-  { name: "Reflexo alinhado + corte", price: "R$ 110,00", duration: "1 h 30 min" },
-];
+import { SERVICES } from "../shared/constants/serviceCatalog";
+import { formatCurrency, formatDuration } from "../shared/utils/formatters";
 
 export function ServicesSection() {
   return (
@@ -29,16 +17,16 @@ export function ServicesSection() {
       </div>
 
       <div className="service-grid">
-        {services.map((service) => (
-          <article className="service-card" key={service.name}>
+        {SERVICES.map((service) => (
+          <article className="service-card" key={service.id}>
             <div>
               <h3>{service.name}</h3>
               <span className="service-card__duration">
                 <Clock3 aria-hidden="true" size={15} />
-                {service.duration}
+                {formatDuration(service.durationMinutes)}
               </span>
             </div>
-            <strong>{service.price}</strong>
+            <strong>{formatCurrency(service.price)}</strong>
           </article>
         ))}
       </div>
