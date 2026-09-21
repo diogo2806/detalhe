@@ -12,8 +12,8 @@ import { useMemo, useRef, useState } from "react";
 import {
   SERVICES,
   type ServiceDefinition,
-} from "../../../../shared/constants/serviceCatalog";
-import { formatCurrency, formatDuration } from "../../../../shared/utils/formatters";
+} from "../shared/constants/serviceCatalog";
+import { formatCurrency, formatDuration } from "../shared/utils/formatters";
 import { BookingTimeSlot } from "./BookingTimeSlot";
 
 type BookingMode = "AVULSO" | "PLANO" | "GRUPO";
