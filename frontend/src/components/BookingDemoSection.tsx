@@ -73,6 +73,56 @@ const AFTERNOON_START = 13 * 60;
 const AFTERNOON_END = 20 * 60 + 30;
 const SLOT_INTERVAL = 15;
 
+const BRAZILIAN_DDDS = new Set([
+  "11", "12", "13", "14", "15", "16", "17", "18", "19",
+  "21", "22", "24", "27", "28",
+  "31", "32", "33", "34", "35", "37", "38",
+  "41", "42", "43", "44", "45", "46", "47", "48", "49",
+  "51", "53", "54", "55",
+  "61", "62", "63", "64", "65", "66", "67", "68", "69",
+  "71", "73", "74", "75", "77", "79",
+  "81", "82", "83", "84", "85", "86", "87", "88", "89",
+  "91", "92", "93", "94", "95", "96", "97", "98", "99",
+]);
+
+function formatBrazilianWhatsApp(value: string): string | null {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length > 11) {
+    return null;
+  }
+
+  if (digits.length === 0) {
+    return "";
+  }
+
+  if (digits.length <= 2) {
+    return `(${digits}`;
+  }
+
+  const ddd = digits.slice(0, 2);
+  const subscriber = digits.slice(2);
+
+  if (subscriber.length <= 5) {
+    return `(${ddd}) ${subscriber}`;
+  }
+
+  return `(${ddd}) ${subscriber.slice(0, 5)}-${subscriber.slice(5)}`;
+}
+
+function isValidBrazilianWhatsApp(value: string): boolean {
+  const digits = value.replace(/\D/g, "");
+
+  if (digits.length !== 11) {
+    return false;
+  }
+
+  const ddd = digits.slice(0, 2);
+  const subscriber = digits.slice(2);
+
+  return BRAZILIAN_DDDS.has(ddd) && /^9\d{8}$/.test(subscriber);
+}
+
 function formatCurrency(value: number): string {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
@@ -193,7 +243,7 @@ export function BookingDemoSection() {
     (total, participant) => total + getService(participant.serviceId).price,
     0,
   );
-  const phoneDigits = phone.replace(/\D/g, "");
+  const whatsappIsValid = isValidBrazilianWhatsApp(phone);
 
   const stepOneValid =
     mode !== "GRUPO" ||
@@ -202,7 +252,7 @@ export function BookingDemoSection() {
         (participant) => participant.name.trim().length > 0 && participant.serviceId.length > 0,
       ));
   const stepTwoValid = selectedDate.length > 0 && selectedTime.length > 0;
-  const stepThreeValid = responsibleName.trim().length > 1 && phoneDigits.length >= 10;
+  const stepThreeValid = responsibleName.trim().length > 1 && whatsappIsValid;
 
   const changeMode = (newMode: BookingMode) => {
     setMode(newMode);
@@ -582,18 +632,32 @@ export function BookingDemoSection() {
                     </label>
 
                     <label className="form-field">
-                      <span>Telefone/WhatsApp</span>
+                      <span>WhatsApp</span>
                       <input
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
                         value={phone}
-                        placeholder="(21) 99999-9999"
+                        maxLength={15}
+                        placeholder="(21) 97562-3471"
                         aria-describedby="booking-phone-help"
-                        onChange={(event) => setPhone(event.target.value)}
+                        aria-invalid={phone.length > 0 && !whatsappIsValid}
+                        onChange={(event) => {
+                          const formattedWhatsApp = formatBrazilianWhatsApp(event.target.value);
+
+                          if (formattedWhatsApp !== null) {
+                            setPhone(formattedWhatsApp);
+                          }
+                        }}
                       />
-                      <small id="booking-phone-help">
-                        Informe DDD e telefone. Nesta demonstração, o dado não é enviado nem armazenado.
+                      <small id="booking-phone-help" aria-live="polite">
+                        {phone.length === 0
+                          ? "Digite um celular com WhatsApp e DDD. Ex.: (21) 97562-3471."
+                          : phone.replace(/\D/g, "").length < 11
+                            ? "Continue digitando o WhatsApp com DDD."
+                            : whatsappIsValid
+                              ? "WhatsApp pronto para continuar."
+                              : "Informe um celular brasileiro válido com DDD e número iniciado por 9."}
                       </small>
                     </label>
                   </div>
