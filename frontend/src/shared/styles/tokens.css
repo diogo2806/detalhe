@@ -1,14 +1,29 @@
 :root {
   color-scheme: dark;
-  --color-background: #0a1017;
-  --color-surface: #101924;
+
+  --palette-original-background: #0a1017;
+  --palette-original-surface: #101924;
+  --palette-original-primary: #d1a374;
+  --palette-graphite-background: #101214;
+  --palette-graphite-surface: #191c1f;
+  --palette-graphite-primary: #c98655;
+  --palette-burgundy-background: #160d10;
+  --palette-burgundy-surface: #211318;
+  --palette-burgundy-primary: #dfbd91;
+  --palette-blue-background: #071522;
+  --palette-blue-surface: #0d2030;
+  --palette-blue-primary: #a8c7d8;
+
+  --color-background: var(--palette-original-background);
+  --color-background-deep: #070c12;
+  --color-surface: var(--palette-original-surface);
   --color-surface-low: #131d2a;
   --color-surface-high: #1f2d40;
   --color-border: #34485f;
   --color-border-soft: #26384f;
   --color-text: #f3f4f6;
   --color-text-muted: #b2bfd0;
-  --color-primary: #d1a374;
+  --color-primary: var(--palette-original-primary);
   --color-primary-hover: #e0b485;
   --color-primary-ink: #241405;
   --color-success: #8bd5ae;
@@ -26,4 +41,73 @@
   --radius-lg: 1.25rem;
   --max-content: 1180px;
   --space-section: clamp(4rem, 8vw, 7rem);
+}
+
+:root[data-palette="graphite-copper"] {
+  --color-background: var(--palette-graphite-background);
+  --color-background-deep: #090a0b;
+  --color-surface: var(--palette-graphite-surface);
+  --color-surface-low: #202428;
+  --color-surface-high: #2c3237;
+  --color-border: #4b555e;
+  --color-border-soft: #343c43;
+  --color-text: #f5f3f0;
+  --color-text-muted: #bcb8b3;
+  --color-primary: var(--palette-graphite-primary);
+  --color-primary-hover: #dda06f;
+  --color-primary-ink: #241408;
+}
+
+:root[data-palette="burgundy-cream"] {
+  --color-background: var(--palette-burgundy-background);
+  --color-background-deep: #0f080a;
+  --color-surface: var(--palette-burgundy-surface);
+  --color-surface-low: #29191f;
+  --color-surface-high: #3a242c;
+  --color-border: #69404c;
+  --color-border-soft: #4b2b34;
+  --color-text: #fff7f0;
+  --color-text-muted: #d0b9bd;
+  --color-primary: var(--palette-burgundy-primary);
+  --color-primary-hover: #edcea8;
+  --color-primary-ink: #2a1809;
+}
+
+:root[data-palette="blue-silver"] {
+  --color-background: var(--palette-blue-background);
+  --color-background-deep: #041018;
+  --color-surface: var(--palette-blue-surface);
+  --color-surface-low: #122a3c;
+  --color-surface-high: #1d3a4e;
+  --color-border: #42647a;
+  --color-border-soft: #2b4a5e;
+  --color-text: #f3f8fb;
+  --color-text-muted: #b7c9d4;
+  --color-primary: var(--palette-blue-primary);
+  --color-primary-hover: #c1d9e5;
+  --color-primary-ink: #071820;
+}
+
+[data-palette-preview="original"] {
+  --palette-preview-background: var(--palette-original-background);
+  --palette-preview-surface: var(--palette-original-surface);
+  --palette-preview-primary: var(--palette-original-primary);
+}
+
+[data-palette-preview="graphite-copper"] {
+  --palette-preview-background: var(--palette-graphite-background);
+  --palette-preview-surface: var(--palette-graphite-surface);
+  --palette-preview-primary: var(--palette-graphite-primary);
+}
+
+[data-palette-preview="burgundy-cream"] {
+  --palette-preview-background: var(--palette-burgundy-background);
+  --palette-preview-surface: var(--palette-burgundy-surface);
+  --palette-preview-primary: var(--palette-burgundy-primary);
+}
+
+[data-palette-preview="blue-silver"] {
+  --palette-preview-background: var(--palette-blue-background);
+  --palette-preview-surface: var(--palette-blue-surface);
+  --palette-preview-primary: var(--palette-blue-primary);
 }
