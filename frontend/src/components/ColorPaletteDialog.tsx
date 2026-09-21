@@ -69,8 +69,10 @@ export function ColorPaletteDialog() {
 
         <div className="screen-manual__content">
           <p className="color-palette-dialog__intro">
-            No modo Aleatório, o sistema sorteia uma paleta ao iniciar. Ao escolher uma paleta
-            específica, ela fica salva neste navegador até você voltar ao modo Aleatório.
+            Compare direções de marca inspiradas em associações da psicologia das cores. Essas
+            percepções variam conforme contexto, cultura e público. No modo Aleatório, o sistema
+            sorteia uma direção ao iniciar; ao escolher uma paleta específica, ela fica salva neste
+            navegador até você voltar ao modo Aleatório.
           </p>
 
           <div className="color-palette-grid" role="group" aria-label="Paletas disponíveis">

@@ -1,26 +1,26 @@
-export type PaletteId = "original" | "graphite-copper" | "burgundy-cream" | "blue-silver";
+export type PaletteId = "original" | "graphite-copper" | "burgundy-cream" | "wood-beige";
 export type PalettePreference = PaletteId | "random";
 
 export const PALETTES: Array<{ id: PaletteId; name: string; description: string }> = [
   {
     id: "original",
-    name: "Original",
-    description: "Azul profundo com dourado.",
+    name: "Azul-marinho e dourado",
+    description: "Confiança e sofisticação: credibilidade e calma com destaque premium.",
   },
   {
     id: "graphite-copper",
     name: "Grafite e cobre",
-    description: "Neutros escuros com destaque quente.",
+    description: "Sofisticação e robustez: força e seriedade equilibradas por calor e tradição.",
   },
   {
     id: "burgundy-cream",
     name: "Bordô e creme",
-    description: "Fundo vinho escuro com contraste suave.",
+    description: "Elegância e personalidade: requinte e energia controlada com contraste mais suave.",
   },
   {
-    id: "blue-silver",
-    name: "Azul e prata",
-    description: "Azul frio com destaque metálico claro.",
+    id: "wood-beige",
+    name: "Madeira e bege",
+    description: "Tradição e acolhimento: estabilidade, materiais naturais e proximidade visual.",
   },
 ];
 

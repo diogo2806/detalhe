@@ -4,7 +4,7 @@ Projeto da experiência digital da Barbearia do Detalhe, em Itaguaí/RJ.
 
 ## Fase atual — validação comercial
 
-A fase atual contém somente o frontend para apresentação ao cliente. Não existe backend funcional, banco de dados ou persistência.
+A fase atual contém somente o frontend para apresentação ao cliente. Não existe backend funcional nem banco de dados. Os dados do agendamento não são persistidos; somente a preferência visual de paleta pode ser armazenada localmente no navegador.
 
 Objetivos desta fase:
 
@@ -14,7 +14,7 @@ Objetivos desta fase:
 - mostrar trabalhos reais;
 - facilitar contato por WhatsApp, Instagram e Google Maps;
 - demonstrar visualmente o fluxo completo de agendamento;
-- permitir comparar quatro paletas de cores diretamente no protótipo;
+- permitir comparar quatro direções de identidade visual inspiradas em associações de psicologia das cores;
 - permitir que o cliente valide experiência, textos e organização antes do desenvolvimento do núcleo definitivo.
 
 ## Demonstração do agendamento
@@ -50,7 +50,7 @@ O cliente pode visualizar:
 - reposicionamento automático no bloco de agendamento ao avançar ou voltar entre etapas;
 - foco no título da nova etapa para manter o contexto também na navegação por teclado;
 - aparência do estado de confirmação;
-- seletor de paleta no cabeçalho, ao lado do Manual da Tela, sem alterar os dados do agendamento e sem persistência após recarregar a página.
+- seletor de paleta no cabeçalho, ao lado do Manual da Tela, com quatro direções: azul-marinho e dourado (confiança e sofisticação), grafite e cobre (sofisticação e robustez), bordô e creme (elegância e personalidade) e madeira e bege (tradição e acolhimento); as associações são referências de posicionamento e variam conforme contexto, cultura e público; o modo Aleatório sorteia uma direção ao iniciar e uma paleta específica pode ficar salva localmente no navegador sem alterar os dados do agendamento.
 
 A demonstração **não**:
 
@@ -59,12 +59,12 @@ A demonstração **não**:
 - reserva horário;
 - cria protocolo;
 - grava dados;
-- usa localStorage;
+- persiste dados pessoais ou dados do agendamento em localStorage;
 - chama API;
 - envia dados para backend;
 - dispara n8n.
 
-Todos os dados digitados existem apenas no estado React da página e desaparecem ao atualizar ou sair do site.
+Todos os dados digitados no agendamento existem apenas no estado React da página e desaparecem ao atualizar ou sair do site. O localStorage é usado somente para a preferência visual de paleta.
 
 A disponibilidade exibida nesta fase também é apenas demonstrativa. Os identificadores `Barbeiro A`, `Barbeiro B` e `Barbeiro C` não representam pessoas reais. A versão definitiva receberá profissionais, bloqueios e ocupações reais do backend.
 
