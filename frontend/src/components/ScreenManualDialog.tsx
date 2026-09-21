@@ -90,8 +90,10 @@ export function ScreenManualDialog() {
           <section>
             <h3>Dados do cliente</h3>
             <p>
-              A demonstração solicita nome e telefone/WhatsApp. Esses dados ficam apenas na memória
-              da página enquanto ela estiver aberta e não são enviados nem persistidos.
+              A demonstração solicita nome e WhatsApp. O número recebe máscara brasileira no formato
+              (DD) 9XXXX-XXXX e só permite continuar quando estiver com DDD válido e formato de celular.
+              Esses dados ficam apenas na memória da página enquanto ela estiver aberta e não são
+              enviados nem persistidos.
             </p>
           </section>
 
