@@ -44,6 +44,8 @@ O cliente pode visualizar:
 - preenchimento de nome e WhatsApp com máscara brasileira `(DD) 9XXXX-XXXX`;
 - validação de DDD brasileiro e número móvel iniciado por `9`;
 - resumo antes da confirmação;
+- reposicionamento automático no bloco de agendamento ao avançar ou voltar entre etapas;
+- foco no título da nova etapa para manter o contexto também na navegação por teclado;
 - aparência do estado de confirmação.
 
 A demonstração **não**:
