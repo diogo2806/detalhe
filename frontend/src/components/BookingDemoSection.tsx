@@ -776,9 +776,10 @@ export function BookingDemoSection() {
                   <div className="booking-inline-message" role="note">
                     Este atendimento ocupa <strong>{effectiveDuration / SLOT_INTERVAL}</strong>{" "}
                     {effectiveDuration / SLOT_INTERVAL === 1 ? "janela" : "janelas"} de 15 minutos.
-                    Azul indica que o serviço pode começar ali. Amarelo indica que há barbeiro naquele
-                    bloco, mas não há continuidade suficiente para iniciar {effectiveDuration} min.
-                    Vermelho indica que ninguém está disponível naquele bloco.
+                    Cada cartão mostra quem está livre naquele bloco. Quando houver continuidade,
+                    também mostra quem pode iniciar {effectiveDuration} min naquele horário. Verde marca
+                    o seu atendimento, amarelo indica que ninguém consegue permanecer livre pela duração
+                    completa e vermelho indica que não há barbeiro disponível naquele bloco.
                   </div>
 
                   <div className="booking-times">
@@ -883,8 +884,9 @@ export function BookingDemoSection() {
 
                   <div className="booking-inline-message" role="note">
                     <strong>Horário ocupado</strong> significa que não há barbeiro naquele bloco.
-                    Um cartão amarelo ainda pode ter barbeiro naquele momento, mas não pode ser usado
-                    como início porque não existe o mesmo profissional livre até o fim do serviço.
+                    Nos demais cartões, a primeira lista mostra quem está livre naquela janela; quando
+                    o serviço pode começar ali, uma segunda linha mostra quem consegue permanecer livre
+                    até o fim do atendimento.
                   </div>
                 </div>
               )}
