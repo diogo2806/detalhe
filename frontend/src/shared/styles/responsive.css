@@ -122,6 +122,10 @@
   .screen-manual__header {
     align-items: flex-start;
   }
+
+  .color-palette-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

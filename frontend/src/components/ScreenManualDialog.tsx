@@ -139,6 +139,16 @@ export function ScreenManualDialog() {
           </section>
 
           <section>
+            <h3>Paleta de cores</h3>
+            <p>
+              O botão com ícone de paleta, ao lado do Manual da Tela, permite comparar quatro
+              combinações visuais do protótipo. A troca é aplicada imediatamente em toda a página,
+              não altera dados nem regras do agendamento e não é salva; ao recarregar, a paleta
+              original volta a ser utilizada.
+            </p>
+          </section>
+
+          <section>
             <h3>Outras seções e ações</h3>
             <p>
               Serviços, plano mensal, trabalhos, localização e FAQ continuam disponíveis. WhatsApp,
