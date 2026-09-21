@@ -1,4 +1,5 @@
 import { BenefitsSection } from "./BenefitsSection";
+import { BookingDemoSection } from "./BookingDemoSection";
 import { FaqSection } from "./FaqSection";
 import { GallerySection } from "./GallerySection";
 import { HeroSection } from "./HeroSection";
@@ -17,6 +18,7 @@ export function LandingPage() {
       <SiteHeader />
       <main id="conteudo-principal">
         <HeroSection />
+        <BookingDemoSection />
         <BenefitsSection />
         <ServicesSection />
         <PlanSection />
