@@ -13,8 +13,8 @@ export function HeroSection() {
           <span> Detalhe em cada acabamento.</span>
         </h1>
         <p className="hero__lead">
-          Uma nova experiência digital para aproximar a Barbearia do Detalhe dos clientes, apresentar
-          serviços com clareza e mostrar como será o agendamento online próprio.
+          Consulte os serviços, escolha o melhor horário e agende seu atendimento online de forma
+          simples e rápida.
         </p>
         <div className="hero__actions">
           <a className="button button--primary" href="#agendamento">
@@ -25,14 +25,14 @@ export function HeroSection() {
             Ver serviços e preços
           </a>
         </div>
-        <div className="hero__highlights" aria-label="Diferenciais da proposta">
+        <div className="hero__highlights" aria-label="Diferenciais do atendimento">
           <span>
             <CalendarClock aria-hidden="true" size={18} />
-            Agendamento online em demonstração
+            Agendamento online
           </span>
           <span>
             <ShieldCheck aria-hidden="true" size={18} />
-            Sem persistência nesta versão
+            Confirmação pelo WhatsApp
           </span>
         </div>
       </div>
