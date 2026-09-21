@@ -2,9 +2,9 @@
 
 Projeto da experiência digital da Barbearia do Detalhe, em Itaguaí/RJ.
 
-## Fase 1 — validação comercial
+## Fase atual — validação comercial
 
-A primeira fase contém somente um frontend estático de apresentação, sem backend e sem persistência.
+A fase atual contém somente o frontend para apresentação ao cliente. Não existe backend funcional, banco de dados ou persistência.
 
 Objetivos desta fase:
 
@@ -13,31 +13,57 @@ Objetivos desta fase:
 - apresentar o conceito do plano mensal;
 - mostrar trabalhos reais;
 - facilitar contato por WhatsApp, Instagram e Google Maps;
-- permitir que o cliente valide o visual e a proposta antes do desenvolvimento do sistema completo.
+- demonstrar visualmente o fluxo completo de agendamento;
+- permitir que o cliente valide experiência, textos e organização antes do desenvolvimento do núcleo definitivo.
 
-Nesta fase não existe:
+## Demonstração do agendamento
 
-- criação de agendamento;
-- consulta de agenda;
-- seleção real de profissional;
-- autenticação;
-- área do assinante;
-- cobrança;
-- Pix gerado pelo sistema;
-- integração com n8n;
-- banco de dados;
-- API backend.
+A landing possui uma demonstração interativa de agendamento executada inteiramente no navegador.
 
-Os botões de contato usam links externos e o agendamento online é apresentado como funcionalidade de uma fase posterior.
+O cliente pode visualizar:
 
-## Próximas fases previstas
+- cliente avulso;
+- plano mensal;
+- agendamento em grupo;
+- escolha entre os 11 serviços;
+- serviços diferentes por participante do grupo;
+- próximos dias de atendimento de terça a sábado;
+- grade de horários a cada 15 minutos;
+- bloqueio visual do almoço entre 12:00 e 13:00;
+- respeito à duração do serviço para não ultrapassar almoço ou fechamento;
+- preenchimento de nome e telefone/WhatsApp;
+- resumo antes da confirmação;
+- aparência do estado de confirmação.
+
+A demonstração **não**:
+
+- consulta disponibilidade real;
+- conhece profissionais cadastrados;
+- reserva horário;
+- cria protocolo;
+- grava dados;
+- usa localStorage;
+- chama API;
+- envia dados para backend;
+- dispara n8n.
+
+Todos os dados digitados existem apenas no estado React da página e desaparecem ao atualizar ou sair do site.
+
+## Núcleo definitivo previsto
 
 Após aprovação comercial, o sistema poderá evoluir para:
 
-- agendamento online;
-- serviços que ocupam uma ou mais janelas de tempo;
-- agendamento em grupo, inclusive com necessidade de vários profissionais simultaneamente;
-- gestão de profissionais e disponibilidade;
+- backend e persistência;
+- serviços parametrizados;
+- cadastro de profissionais;
+- vínculo profissional × serviço;
+- expediente e bloqueios individuais;
+- cálculo de disponibilidade real;
+- prevenção de conflito e dupla reserva;
+- agendamento individual;
+- agendamento em grupo com múltiplos profissionais;
+- confirmação transacional;
+- geração de protocolo;
 - plano mensal;
 - lembrete de vencimento um dia antes;
 - pagamento via Pix;
