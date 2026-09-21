@@ -6,6 +6,8 @@ Projeto da experiência digital da Barbearia do Detalhe, em Itaguaí/RJ.
 
 A fase atual contém somente o frontend para apresentação ao cliente. Não existe backend funcional nem banco de dados. Os dados do agendamento não são persistidos; somente a preferência visual de paleta pode ser armazenada localmente no navegador.
 
+Os textos visíveis na landing representam intencionalmente a experiência planejada da versão real do produto. Por isso, a interface pública evita linguagem de protótipo ou simulação, enquanto as limitações técnicas desta fase permanecem registradas nesta documentação.
+
 Objetivos desta fase:
 
 - apresentar a identidade e a proposta do novo site;
