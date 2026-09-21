@@ -16,7 +16,7 @@ export function SiteFooter() {
       <p>Rua Nilo Peçanha, Centro • Itaguaí - RJ</p>
 
       <div className="site-footer__links">
-        <a href="https://wa.me/5521967284242" target="_blank" rel="noreferrer">
+        <a href="https://wa.me/5521975623471" target="_blank" rel="noreferrer">
           <MessageCircle aria-hidden="true" size={17} />
           WhatsApp
         </a>
