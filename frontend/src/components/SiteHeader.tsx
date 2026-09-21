@@ -1,13 +1,11 @@
 import { Scissors } from "lucide-react";
 import { ScreenManualDialog } from "./ScreenManualDialog";
 
-const WHATSAPP_URL = "https://wa.me/5521975623471";
-
 export function SiteHeader() {
   return (
     <>
       <div className="preview-banner" role="status">
-        Prévia para aprovação • Agendamento online será ativado em uma próxima fase.
+        Demonstração do agendamento disponível • nenhuma reserva é gravada nesta versão.
       </div>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Barbearia do Detalhe - início">
@@ -21,6 +19,7 @@ export function SiteHeader() {
         </a>
 
         <nav className="site-nav" aria-label="Navegação principal">
+          <a href="#agendamento">Agendamento</a>
           <a href="#servicos">Serviços</a>
           <a href="#plano">Plano mensal</a>
           <a href="#trabalhos">Trabalhos</a>
@@ -30,8 +29,8 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <ScreenManualDialog />
-          <a className="button button--primary button--compact" href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-            Falar no WhatsApp
+          <a className="button button--primary button--compact" href="#agendamento">
+            Agendar horário
           </a>
         </div>
       </header>
