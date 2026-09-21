@@ -8,7 +8,7 @@ export function PlanSection() {
     <section className="section section--accent" id="plano" aria-labelledby="plano-title">
       <div className="plan-panel">
         <div className="plan-panel__content">
-          <span className="eyebrow">Relacionamento recorrente</span>
+          <span className="eyebrow">Plano mensal</span>
           <h2 id="plano-title">Plano mensal para quem gosta de manter o corte em dia</h2>
           <p>
             A proposta do plano mensal é transformar visitas recorrentes em uma experiência mais previsível
