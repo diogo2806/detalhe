@@ -8,7 +8,7 @@ import {
   UserRound,
   Users,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { BookingTimeSlot } from "./BookingTimeSlot";
 
 type BookingMode = "AVULSO" | "PLANO" | "GRUPO";
@@ -427,6 +427,8 @@ function getService(serviceId: string): ServiceDefinition {
 
 export function BookingDemoSection() {
   const dates = useMemo(() => getNextServiceDates(5), []);
+  const bookingSectionRef = useRef<HTMLElement>(null);
+  const stepHeadingRef = useRef<HTMLHeadingElement>(null);
   const [mode, setMode] = useState<BookingMode>("AVULSO");
   const [step, setStep] = useState(1);
   const [serviceId, setServiceId] = useState(SERVICES[0].id);
@@ -549,8 +551,22 @@ export function BookingDemoSection() {
     (step === 2 && stepTwoValid) ||
     (step === 3 && stepThreeValid);
 
+  const navigateToStep = (nextStep: number) => {
+    setStep(Math.min(4, Math.max(1, nextStep)));
+
+    window.requestAnimationFrame(() => {
+      bookingSectionRef.current?.scrollIntoView({ block: "start" });
+      stepHeadingRef.current?.focus({ preventScroll: true });
+    });
+  };
+
   return (
-    <section className="section section--accent" id="agendamento" aria-labelledby="agendamento-title">
+    <section
+      ref={bookingSectionRef}
+      className="section section--accent"
+      id="agendamento"
+      aria-labelledby="agendamento-title"
+    >
       <div className="section__heading section__heading--split">
         <div>
           <span className="eyebrow">Demonstração interativa</span>
@@ -624,7 +640,7 @@ export function BookingDemoSection() {
                 <div className="booking-step">
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 1 de 4</span>
-                    <h3>Como será o atendimento?</h3>
+                    <h3 ref={stepHeadingRef} tabIndex={-1}>Como será o atendimento?</h3>
                     <p>Escolha a modalidade para visualizar o fluxo correspondente.</p>
                   </div>
 
@@ -744,7 +760,7 @@ export function BookingDemoSection() {
                 <div className="booking-step">
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 2 de 4</span>
-                    <h3>Escolha uma data e um horário</h3>
+                    <h3 ref={stepHeadingRef} tabIndex={-1}>Escolha uma data e um horário</h3>
                     <p>
                       Cada cartão representa 15 minutos. Um horário só pode ser escolhido como início
                       quando o mesmo barbeiro estiver disponível durante toda a duração do serviço.
@@ -895,7 +911,9 @@ export function BookingDemoSection() {
                 <div className="booking-step">
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 3 de 4</span>
-                    <h3>{mode === "GRUPO" ? "Dados do responsável" : "Seus dados"}</h3>
+                    <h3 ref={stepHeadingRef} tabIndex={-1}>
+                      {mode === "GRUPO" ? "Dados do responsável" : "Seus dados"}
+                    </h3>
                     <p>
                       Na versão final, estes dados serão usados para identificar o agendamento e enviar
                       a confirmação.
@@ -956,7 +974,9 @@ export function BookingDemoSection() {
                 <div className="booking-step">
                   <div className="booking-step__heading">
                     <span className="eyebrow">Etapa 4 de 4</span>
-                    <h3>Confira a prévia antes da confirmação</h3>
+                    <h3 ref={stepHeadingRef} tabIndex={-1}>
+                      Confira a prévia antes da confirmação
+                    </h3>
                     <p>
                       Antes de concluir de verdade, o sistema confirmará se o horário ainda está disponível.
                     </p>
@@ -1076,7 +1096,7 @@ export function BookingDemoSection() {
                 className="button button--secondary"
                 type="button"
                 disabled={step === 1}
-                onClick={() => setStep((currentStep) => Math.max(1, currentStep - 1))}
+                onClick={() => navigateToStep(step - 1)}
               >
                 Voltar
               </button>
@@ -1093,7 +1113,7 @@ export function BookingDemoSection() {
                     type="button"
                     disabled={!canAdvance}
                     aria-disabled={!canAdvance}
-                    onClick={() => setStep((currentStep) => Math.min(4, currentStep + 1))}
+                    onClick={() => navigateToStep(step + 1)}
                   >
                     Continuar
                   </button>
