@@ -419,6 +419,7 @@
 .form-field {
   display: grid;
   gap: 0.45rem;
+  align-content: start;
 }
 
 .form-field > span {
@@ -496,6 +497,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem;
+  align-items: start;
 }
 
 .booking-inline-message {
