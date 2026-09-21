@@ -6,7 +6,7 @@ import {
   PALETTES,
   savePalettePreference,
   type PalettePreference,
-} from "../shared/palette";
+} from "../../../../shared/palette";
 
 export function ColorPaletteDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
