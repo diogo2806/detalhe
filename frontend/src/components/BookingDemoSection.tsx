@@ -303,15 +303,15 @@ export function BookingDemoSection() {
             <span className="booking-demo__confirmation-icon" aria-hidden="true">
               <Check size={30} />
             </span>
-            <span className="eyebrow">Prévia da confirmação</span>
-            <h3>É assim que o cliente verá a conclusão do agendamento.</h3>
+            <span className="eyebrow">Simulação concluída</span>
+            <h3>Pronto! Essa é a confirmação que você verá ao agendar.</h3>
             <p>
-              Nesta demonstração, nenhum agendamento foi criado e nenhum protocolo foi gerado.
-              Na versão integrada, o backend revalidará a disponibilidade, salvará a reserva,
-              gerará o protocolo e publicará o evento de confirmação para o n8n.
+              Neste teste, nenhum horário foi reservado de verdade. Quando o agendamento online
+              estiver ativo, esta tela mostrará a confirmação do seu horário e você receberá uma
+              mensagem no WhatsApp.
             </p>
             <button className="button button--primary" type="button" onClick={resetDemo}>
-              Simular outro agendamento
+              Fazer nova simulação
             </button>
           </div>
         ) : (

@@ -99,9 +99,9 @@ export function ScreenManualDialog() {
             <h3>Resumo e confirmação</h3>
             <p>
               O resumo apresenta modalidade, serviço ou participantes, duração, data, horário,
-              cliente, telefone, profissional e valor de referência. O profissional aparece como
-              pendente de disponibilidade real. O botão de confirmação apenas mostra a aparência do
-              estado final e não cria agendamento.
+              cliente, telefone, profissional e valor de referência. Ao concluir a simulação, a tela
+              mostra como será a confirmação do horário e informa que nenhum agendamento de verdade
+              foi feito nesta etapa de apresentação.
             </p>
           </section>
 
