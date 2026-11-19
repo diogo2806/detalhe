@@ -10,7 +10,10 @@ COPY src ./src
 
 RUN npm run build
 
-FROM nginx:1.29-alpine AS runtime
+# Imagem oficial NGINX 1.31.9 (Alpine 3.24; pacote nginx=1.31.9-r1).
+# Tags/arquiteturas: https://github.com/docker-library/official-images/blob/master/library/nginx
+# Correcoes upstream: https://nginx.org/en/security_advisories.html
+FROM nginx:1.31.9-alpine AS runtime
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
